@@ -4151,7 +4151,7 @@
 			}
 
 			.banner > article .inner {
-				position: relative;
+				position: center;
 				display: inline-block;
 				vertical-align: middle;
 				z-index: 1;
@@ -4162,7 +4162,7 @@
 				}
 
 			.banner > article h2 {
-				font-size: 7rem;
+				font-size: 6vw;
 				margin-bottom: 0;
 				color: #FFF;
 				font-weight: 300;
@@ -4175,7 +4175,7 @@
 			.banner > article p {
 				color: rgba(255, 255, 255, 0.65);
 				text-transform: uppercase;
-				font-size: 1rem;
+				font-size: 1em;
 				font-weight: 300;
 				margin: 0;
 				padding-bottom: 1.75rem;
@@ -4321,3 +4321,38 @@
 			}
 
 		}
+
+/*Mine*/
+.blog h1 {
+	font-size: 4vw;
+	margin-bottom: 0;
+	color: #2d2d2d;
+	font-weight: 600;
+	text-align: center;
+}
+@media screen and (max-width: 736px) {
+
+	.blog h1 {
+		font-size: 4em;
+	}
+}
+.blog div {
+	font-size: 1.5em;
+	margin: 0 8vw 0 8vw;
+}
+.image.fit .roundcorners img {
+	border-radius: 25px;
+}
+.image.half.fit .roundcorners img {
+	border-radius: 25px;
+}
+.image .roundcorners img {
+	border-radius: 25px;
+}
+.blog .image.half.fit img {
+	
+	width: 50%;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
