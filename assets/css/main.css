@@ -4328,7 +4328,7 @@
 	margin-bottom: 0;
 	color: #2d2d2d;
 	font-weight: 600;
-	text-align:justify;
+	text-align:center;
 }
 @media screen and (max-width: 736px) {
 
@@ -4339,6 +4339,7 @@
 .blog div {
 	font-size: 1.5em;
 	margin: 0 8vw 0 8vw;
+	text-align: justify;
 }
 .image.fit .roundcorners img {
 	border-radius: 25px;
