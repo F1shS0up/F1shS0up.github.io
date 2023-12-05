@@ -4358,16 +4358,19 @@
 	font-weight: 600;
 	text-align:center;
 }
+.blog p {
+	font-size: 1.5em;
+	margin: 0 8vw 0 8vw;
+	text-align: justify;
+}
 @media screen and (max-width: 736px) {
 
 	.blog h1 {
 		font-size: 3em;
 	}
-}
-.blog div {
-	font-size: 1.5em;
-	margin: 0 8vw 0 8vw;
-	text-align: justify;
+	.blog p{
+		font-size: 1.2em;
+	}
 }
 .image.fit .roundcorners img {
 	border-radius: 25px;
@@ -4446,6 +4449,19 @@
 .engine ol li {
 	font-size: 1.5em;
 }
+@media screen and (max-width: 736px) {
+
+	.engine h1 {
+		font-size: 3em;
+	}
+	.engine h2 {
+		font-size: 2.5em;
+	}
+
+	.engine p {
+		font-size: 1.2em;
+	}
+}
 
 html{
 	scroll-behavior:smooth;
@@ -4467,4 +4483,6 @@ html{
 	.container-mine.align-start {
 		align-items: start;
 	}
+
+
 
