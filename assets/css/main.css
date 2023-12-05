@@ -31,7 +31,7 @@
 	}
 
 	ol, ul {
-		list-style: none;
+		
 	}
 
 	blockquote, q {
@@ -2380,9 +2380,9 @@
 /* List */
 
 	ol {
-		list-style: decimal;
+		
 		margin: 0 0 2rem 0;
-		padding-left: 1.25rem;
+		padding-left: 3rem;
 	}
 
 		ol li {
@@ -4438,6 +4438,13 @@
 	text-align: justify;
 	font-size: 1.5em;
 	margin: 0 8vw 0 8vw;
+}
+.engine ol {
+	margin: 0 8vw 0 8vw;
+}
+
+.engine ol li {
+	font-size: 1.5em;
 }
 
 html{
