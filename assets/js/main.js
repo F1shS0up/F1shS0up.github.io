@@ -318,14 +318,16 @@ $(document).ready(function () {
 });
 
 const elementsToFadeInUpOnScroll = document.querySelectorAll("h1, .engine h2, .blog h2, h3, h4, .engine p, .blog p, .engine ol, .blog ol, .engine video, .blog video, .engine img, .blog img, .engine ul, .blog ul");
-if (elementsToFadeInUpOnScroll && !navigator.userAgentData.mobile) {
-	window.addEventListener("scroll", function (event) {
-		elementsToFadeInUpOnScroll.forEach(function (element) {
-			if (window.scrollY >= (element.offsetTop - window.innerHeight)) {
-				element.classList.add("fade-in-up");
-			} else {
-				element.classList.remove("fade-in-up");
-			}
+if (!navigator.userAgentData.mobile) {
+	if (elementsToFadeInUpOnScroll) {
+		window.addEventListener("scroll", function (event) {
+			elementsToFadeInUpOnScroll.forEach(function (element) {
+				if (window.scrollY >= (element.offsetTop - window.innerHeight)) {
+					element.classList.add("fade-in-up");
+				} else {
+					element.classList.remove("fade-in-up");
+				}
+			});
 		});
-	});
+	}
 }
