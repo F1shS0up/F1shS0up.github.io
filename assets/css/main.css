@@ -4486,9 +4486,11 @@
 
 .engine ol li {
 	font-size: 1.5em;
+	text-align: justify;
 }
 .engine ul li {
 	font-size: 1.5em;
+	text-align: justify;
 }
 @media screen and (max-width: 736px) {
 
