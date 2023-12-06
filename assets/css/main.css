@@ -4305,14 +4305,13 @@
 
 /* Footer */
 
-	#footer {
-		padding: 4rem 0 2rem 0 ;
-		background: #000;
-		text-align: center;
-	}
-		.offset-footer {
-			margin-top: 100px;
-		}
+#footer {
+	padding: 4rem 0 2rem 0;
+	background: #000;
+	text-align: center;
+	margin-top: 100px;
+}
+		
 
 		#footer a {
 			color: rgba(255, 255, 255, 0.5);
@@ -4396,31 +4395,50 @@
 	margin-right: auto;
 }
 
-.engine .image-medium {
+.engine .image.medium {
 	width: 50%;
+	height: auto;
 }
-.engine .image-large {
+.engine .image.large {
 	width: 75%;
+	height: auto;
 }
-.engine .image-full {
+.engine .image.full {
 	width: 100%;
+	height: auto;
 }
-.engine .image-small {
+.engine .image.small {
 	width: 30em;
-	margin: 0 4vw 0 4vw;
-	
+	height: auto;	
+}
+.engine .image.extra.small {
+	width: 15em;
+	height: auto;
+}
+.engine .image.extra.small.height {
+	height: 15em;
+	width: auto;
 }
 @media screen and (max-width: 736px) {
-	.engine .image-small {
+	.engine .image.small {
 		width: calc(100% - 16vw);
 		margin: 0 8vw 0 8vw;
 	}
+}
+.image.floatR {
+	float: right;
+	margin: 0 8vw 0 4vw;
+}
+.image.floatL {
+	float: left;
+	margin: 0 4vw 0 8vw;
 }
 
 /* Engine */
 .engine h1 {
 	font-size: 4em;
 	margin-bottom: 0;
+	margin-top: .5em;
 	color: #2d2d2d;
 	font-weight: 600;
 	text-align: center;
@@ -4428,6 +4446,7 @@
 .engine h2 {
 	font-size: 3em;
 	margin-bottom: 0;
+	margin-top: 1em;
 	color: #2d2d2d;
 	font-weight:400;
 	text-align: center;
@@ -4458,9 +4477,11 @@
 		font-size: 2.5em;
 	}
 
-	.engine p {
+	.engine p, .engine ol li {
 		font-size: 1.2em;
 	}
+
+	
 }
 
 html{
@@ -4468,8 +4489,11 @@ html{
 }
 
 
-.container-mine{
-	display: flex;
+/*.container-mine{
+	display:flex;
+	flex-wrap: wrap;
+	flex-direction:column;
+	justify-content:flex-end;
 }
 
 	.container-mine.align-center {
@@ -4482,7 +4506,52 @@ html{
 
 	.container-mine.align-start {
 		align-items: start;
+	}*/ /*Not working yet*/
+.new-color-link:link {
+	color: midnightblue;
+	font-weight: 800;
+}
+.new-color-link:visited {
+	color: midnightblue;
+	font-weight: 800;
+}
+.new-color-link:hover {
+	color: black;
+	font-weight: 800;
+}
+.new-color-link:active {
+	color: midnightblue;
+	font-weight: 800;
+}
+
+video {
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
+	width: 50%;
+	height: auto;
+	border-radius: 25px;
+}
+@media screen and (max-width: 736px) {
+
+	video {
+		width: calc(100% - 16vw);
+		height: auto;
+	}
+}
+/* CSS */
+@keyframes fadeInUp {
+	from {
+		transform: translateY(50px);
+		opacity: 0;
 	}
 
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
 
-
+.fade-in-up {
+	animation: 0.75s both fadeInUp;
+}

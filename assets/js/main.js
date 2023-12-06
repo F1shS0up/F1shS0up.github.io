@@ -313,3 +313,19 @@ var settings = {
 	});
 
 })(jQuery);
+$(document).ready(function () {
+	$(this).scrollTop(0);
+});
+
+const elementsToFadeInUpOnScroll = document.querySelectorAll("h1, .engine h2, .blog h2, h3, h4, .engine p, .blog p, .engine ol, .blog ol, .engine video, .blog video, .engine img, .blog img");
+if (elementsToFadeInUpOnScroll) {
+	window.addEventListener("scroll", function (event) {
+		elementsToFadeInUpOnScroll.forEach(function (element) {
+			if (window.scrollY >= (element.offsetTop - window.innerHeight)) {
+				element.classList.add("fade-in-up");
+			} else {
+				element.classList.remove("fade-in-up");
+			}
+		});
+	});
+}

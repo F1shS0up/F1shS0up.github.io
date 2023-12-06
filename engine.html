@@ -38,6 +38,8 @@
 		</a>
 	</section>
 	<div class="engine">
+
+
 		<h1 id="history">
 			History
 		</h1>
@@ -50,25 +52,111 @@
 			It was crashing constantly, many bugs that weren't caused by me and much more. I did't want to go back to Unity either, because at that time they changed their pricing plan,
 			which made it worse for indie developers.
 		</p>
-		<p>Therefore I had 3 options:
-		<b>
-			<ol type="A">
-				<li>Try Godot</li>
-				<li>Move to framework</li>
-				<li>Create my own engine</li>
-			</ol>
-		</b>
-			
 		<p>
-			I decided not to try godot because of the lack of documentation for C# users, I would also rather use C++. I also thought of using framework like XNA(currently monogame) or SDL. 
+			Therefore I had 3 options:
+			<b>
+				<ol type="A">
+					<li>Try Godot</li>
+					<li>Move to framework</li>
+					<li>Create my own engine</li>
+				</ol>
+			</b>
+
+		<p>
+			I decided not to try godot because of the lack of documentation for C# users, I would also rather use C++. I also thought of using framework like XNA(currently monogame) or SDL.
 			Then it striked me, I could use some framework or library like SDL for rendering and create Game engine with it.
 		</p>
 		<h2>
 			The beginning game development
 		</h2>
+		<p>
+			I started by trying to implement almost everything on my own. I decided to use <b>Vulkan</b>, but after implementing opening the window <b>I gave up</b>. I chose more easier approach using <b>SDL</b>.
+			With it I just use some already made functions and I have a window with renderer up and running. Once I've done that, I started thinking how will the engine work.
+		</p>
+		<p>
+			My first thought was, that there will be array of <b>objects</b> and each object will be a <b>class that derives from parent object class</b>, which will have some basic functions like <b>Begin, Update and Draw</b>.
+			The derived class will <b>override</b> these functions from the parent and some manager would call these functions. Object will also have list of components. This system is very similar to <b>Unity's system</b>.
+			However there is faster system called <b>ECS</b> <a href="#ecs" class="new-color-link">Learn more</a>.
+		</p>
+		<h2>
+			The main development
+		</h2>
+		<p>
+			I started with creating some algorithms for drawing two main shapes squares and circles.
+			After trying to make algorithm for polygons I realized there is special library for it called "GFX Primitives" so I used that. I had to change some bits to make it work, but after a while I fixed it.
+		</p>
+		<p>
+			After that I created transform component just holding position. Then I created square made of 4 lines to create a place to test collision. Collision was really complex so I started with making 2 components:
+		</p>
+		<ol>
+			<li><b>Line collider</b> - contains points A and B and normal to these points</li>
+			<li><b>Circle collider</b> - pointer to position from transform and radius</li>
+		</ol>
+		<br>
+		<img src="images/circle-intersection.jpg" alt="" class="image extra small floatR">
+		<p>
+			In nutshell, you check if the circle's line
+			(containing point from the middle of the circle and a point in the direction of the other line normal, that will have size of the circle's radius) intersects with the line that you're checking collision with.
+			If it does that means there's collision. Then we resolve collision
+		</p>
+
+		<br>
+		<br>
+		<video controls>
+			<source src="images/circle-line-collision.mp4" type="video/mp4">
+		</video>
+
+		<!--<img src="images/arrow-in-wall.png" alt="" class="image extra small height floatL">
+	<img src="images/triangle-formula.png" alt="" class="image extra small floatR">-->
+		<!--<p>
+		To resolve the collision we need to calculate bounce angle. In order to calculate it we need a normal vector of the line facing the objects direction(<a style="color: #0007ff; text-decoration: none; font-weight:600">n</a>),
+		and we also need the velocity of the object(<a style="color: #0007ff; text-decoration: none; font-weight:600">v</a>).
+		We then use this formula:
+		<br>
+		<a style="color: #0007ff; text-decoration: none; font-weight:600">u</a> = (<a style="color: #0007ff; text-decoration: none; font-weight:600">v</a> * <a style="color: #0007ff; text-decoration: none; font-weight:600">n</a>
+		/ <a style="color: #0007ff; text-decoration: none; font-weight:600">n</a> * <a style="color: #0007ff; text-decoration: none; font-weight:600">n</a>) * <a style="color: #0007ff; text-decoration: none; font-weight:600">n</a>
+			<p>
+		<a style="color: #0007ff; text-decoration: none; font-weight:600">w</a> = <a style="color: #0007ff; text-decoration: none; font-weight:600">v</a> - <a style="color: #0007ff; text-decoration: none; font-weight:600">u</a>
+		<p>
+		<b>new velocity</b> = <a style="color: #0007ff; text-decoration: none; font-weight:600">w</a> - <a style="color: #0007ff; text-decoration: none; font-weight:600">u</a>
+	</p>
+	<br>-->
+		<br>
+		<br>
+		<br>
+		<br>
+		<p>
+			This is just collision between a line and circle. There are way more algorithms and formulas to make collision and rigidbody work. Next I wanted to make softbody simulation.
+		<p>
+			I won't go into much detail, but each softbody has points, that have some values like velocity, position and force. Each frame you recalculate these values. You apply forces to the points like gravity.
+			Then to keep it together you create springs. They are just force that contain 2 points and some resting length. If the length is larger than the resting length,
+			it applies the force towards the points, if it's smaller, it applies the forces away from each other. There are other things to consider like shape matching, damping and much more...
+		</p>
+		<br>
+		<br>
+		<video controls>
+			<source src="images/softbody-sim.mp4" type="video/mp4">
+		</video>
+		<br>
+		<br>
+		<br>
+		<br>
+		<p>
+			After that I just started creating more important and usable things like sprite, movement, animator, sprite sheet and much more.
+		<p>
+			If you want to learn more about circle(or particle) collision I suggest you see this <a href="https://www.youtube.com/watch?v=eED4bSkYCB8">Video</a>
+		<p>
+			If you would like to look closer to how softbodies work look at these videos:
+			<ol type="I">
+				<li><a href="https://www.youtube.com/watch?v=kyQP4t_wOGI">Softbody physics</a></li>
+				<li><a href="https://www.youtube.com/watch?v=3OmkehAJoyo">Jelly car physics</a></li>
+			</ol>
+
+
+		</p>
 	</div>
 
-	<div class="offset-footer">
+	
 		<!-- Footer --><footer id="footer">
 			<div class="container">
 				<ul class="icons">
@@ -81,7 +169,7 @@
 		</footer><div class="copyright">
 			Adam Vlčko
 		</div>
-	</div>
+	
 
 	<!-- Scripts -->
 	<script src="assets/js/jquery.min.js"></script>
