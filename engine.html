@@ -38,6 +38,26 @@
 		</a>
 	</section>
 	<div class="engine">
+		<h1>
+			Info
+		</h1>
+
+
+		<img src="images/SDL.png" alt="" class="image-round image medium floatR" style="box-shadow: 10px 10px #6d7778; margin-bottom: 4vh">
+
+		<p>
+			I have been writing this 2D game engine since July 2023 in C++ with the help of SDL2 (In future I will move it to SDL3 if it releases). The engine is simply static library(.lib), which is then used in game project.
+			For rendering I use SDL Renderer, which seems to do the job for now.
+			As for more technical side of engine it uses <a href="#ecs" class="new-color-link">ECS</a>, which makes it fast enough for my demands.
+			<br>
+			If you want to download or just check out the source or documentation see <a href="https://github.com/F1shS0up/SDL_GameEngine" class="new-color-link">GitHub</a>
+		</p>
+		<h2>
+			Features
+		</h2>
+		<p>
+			It has softbody <b><a href="#softbody-vid" class="new-color-link">simulation</a>, rigidbodies, sprites, animators, sprite sheets, some simple ui(buttons, text, input field...) and much more</b>. The feature list will be constantly updated - it's still in early stage of development...
+		</p>
 
 
 		<h1 id="history">
@@ -76,7 +96,7 @@
 		<p>
 			My first thought was, that there will be array of <b>objects</b> and each object will be a <b>class that derives from parent object class</b>, which will have some basic functions like <b>Begin, Update and Draw</b>.
 			The derived class will <b>override</b> these functions from the parent and some manager would call these functions. Object will also have list of components. This system is very similar to <b>Unity's system</b>.
-			However there is faster system called <b>ECS</b> <a href="#ecs" class="new-color-link">Learn more</a>.
+			However there is faster system called <a href="#ecs" class="new-color-link">ECS</a>.
 		</p>
 		<h2>
 			The main development
@@ -134,7 +154,7 @@
 		</p>
 		<br>
 		<br>
-		<video controls>
+		<video controls id="softbody-vid">
 			<source src="images/softbody-sim.mp4" type="video/mp4">
 		</video>
 		<br>
@@ -144,15 +164,27 @@
 		<p>
 			After that I just started creating more important and usable things like sprite, movement, animator, sprite sheet and much more.
 		<p>
-			If you want to learn more about circle(or particle) collision I suggest you see this <a href="https://www.youtube.com/watch?v=eED4bSkYCB8">Video</a>
+			If you want to learn more about circle(or particle) collision I suggest you see this <a href="https://www.youtube.com/watch?v=eED4bSkYCB8" class="new-color-link">Video</a>
 		<p>
 			If you would like to look closer to how softbodies work look at these videos:
 			<ol type="I">
-				<li><a href="https://www.youtube.com/watch?v=kyQP4t_wOGI">Softbody physics</a></li>
-				<li><a href="https://www.youtube.com/watch?v=3OmkehAJoyo">Jelly car physics</a></li>
+				<li><a href="https://www.youtube.com/watch?v=kyQP4t_wOGI" class="new-color-link">Softbody physics</a></li>
+				<li><a href="https://www.youtube.com/watch?v=3OmkehAJoyo" class="new-color-link">Jelly car physics</a></li>
 			</ol>
 
 
+		</p>
+		
+		<!--<h2 id="ecs" style="text-align:left;margin-left: 8vw; margin-right:auto">
+			*ECS
+		</h2>-->
+		<p style="margin-top:25vh">
+			<b  id="ecs">*ECS</b> is <b>E</b>ntity <b>C</b>omponent <b>S</b>ystem. 
+				<ul type="I">
+					<li><b>Entity</b> - An entity in a game engine, is a general-purpose object represented by only a unique ID, often implemented as a plain integer, nothing more.</li>
+					<li><b>Component</b> - A component labels an entity with a specific aspect and stores the required data. For instance, a game object capable of taking damage may have a Health component.</li>
+					<li><b>System</b> - A system is a process that operates on entities with specific components. For instance, a physics system may query entities with mass, velocity, and position components, iterating over the results to perform physics calculations on each entity's set of components.</li>
+				</ul>
 		</p>
 	</div>
 

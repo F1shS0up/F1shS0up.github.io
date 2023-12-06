@@ -4377,7 +4377,7 @@
 .image.half.fit .roundcorners img {
 	border-radius: 25px;
 }
-.image .roundcorners img {
+.roundcorners {
 	border-radius: 25px;
 }
 .blog .image.half.fit img {
@@ -4388,7 +4388,7 @@
 	margin-right: auto;
 }
 
-.engine .image-half-fit {
+.engine .image.half.fit {
 	width: 50%;
 	height: auto;
 	margin-left: auto;
@@ -4420,10 +4420,11 @@
 	width: auto;
 }
 @media screen and (max-width: 736px) {
-	.engine .image.small {
+	.engine .image.small, .engine .image.medium, .engine .image.extra.small {
 		width: calc(100% - 16vw);
 		margin: 0 8vw 0 8vw;
 	}
+	
 }
 .image.floatR {
 	float: right;
@@ -4432,24 +4433,39 @@
 .image.floatL {
 	float: left;
 	margin: 0 4vw 0 8vw;
+	
 }
 
 /* Engine */
 .engine h1 {
 	font-size: 4em;
 	margin-bottom: 0;
-	margin-top: .5em;
+	margin-top: 1em;
 	color: #2d2d2d;
 	font-weight: 600;
 	text-align: center;
+	display: block;
+	clear:both;
+
 }
 .engine h2 {
 	font-size: 3em;
 	margin-bottom: 0;
 	margin-top: 1em;
 	color: #2d2d2d;
-	font-weight:400;
+	font-weight: 400;
 	text-align: center;
+	display: block;
+}
+
+.engine h3 {
+	font-size: 2.5em;
+	margin-bottom: 0;
+	margin-top: 0;
+	color: #2d2d2d;
+	font-weight: 300;
+	text-align: center;
+	display: block;
 }
 
 .engine .image-round {
@@ -4464,8 +4480,14 @@
 .engine ol {
 	margin: 0 8vw 0 8vw;
 }
+.engine ul {
+	margin: 0 8vw 0 8vw;
+}
 
 .engine ol li {
+	font-size: 1.5em;
+}
+.engine ul li {
 	font-size: 1.5em;
 }
 @media screen and (max-width: 736px) {
@@ -4473,19 +4495,20 @@
 	.engine h1 {
 		font-size: 3em;
 	}
-	.engine h2 {
+	.engine h2, h3 {
 		font-size: 2.5em;
 	}
 
-	.engine p, .engine ol li {
+	.engine p, .engine ol li, .engine ul li {
 		font-size: 1.2em;
 	}
 
 	
 }
 
-html{
-	scroll-behavior:smooth;
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 10%;
 }
 
 

@@ -317,7 +317,7 @@ $(document).ready(function () {
 	$(this).scrollTop(0);
 });
 
-const elementsToFadeInUpOnScroll = document.querySelectorAll("h1, .engine h2, .blog h2, h3, h4, .engine p, .blog p, .engine ol, .blog ol, .engine video, .blog video, .engine img, .blog img");
+const elementsToFadeInUpOnScroll = document.querySelectorAll("h1, .engine h2, .blog h2, h3, h4, .engine p, .blog p, .engine ol, .blog ol, .engine video, .blog video, .engine img, .blog img, .engine ul, .blog ul");
 if (elementsToFadeInUpOnScroll) {
 	window.addEventListener("scroll", function (event) {
 		elementsToFadeInUpOnScroll.forEach(function (element) {
