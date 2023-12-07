@@ -4388,39 +4388,43 @@
 	margin-right: auto;
 }
 
-.engine .image.half.fit {
+.image.half.fit {
 	width: 50%;
 	height: auto;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.engine .image.medium {
+.image.medium {
 	width: 50%;
 	height: auto;
 }
-.engine .image.large {
+.image.large {
 	width: 75%;
 	height: auto;
 }
-.engine .image.full {
+.image.full {
 	width: 100%;
 	height: auto;
 }
-.engine .image.small {
+.image.small {
 	width: 30em;
 	height: auto;	
 }
-.engine .image.extra.small {
+.image.extra.small {
 	width: 15em;
 	height: auto;
 }
-.engine .image.extra.small.height {
+.image.extra.small.no.mobile {
+	width: 15em;
+	height: auto;
+}
+.image.extra.small.height {
 	height: 15em;
 	width: auto;
 }
 @media screen and (max-width: 736px) {
-	.engine .image.small, .engine .image.medium, .engine .image.extra.small {
+	.image.small, .image.medium, .image.extra.small {
 		width: calc(100% - 16vw);
 		margin: 0 8vw 0 8vw;
 	}
@@ -4506,6 +4510,85 @@
 	}
 
 	
+}
+
+/* About */
+.about h1 {
+	font-size: 4em;
+	margin-bottom: 0;
+	margin-top: 1em;
+	color: #2d2d2d;
+	font-weight: 600;
+	text-align: center;
+	display: block;
+	clear: both;
+}
+
+.about h2 {
+	font-size: 3em;
+	margin-bottom: 0;
+	margin-top: 1em;
+	color: #2d2d2d;
+	font-weight: 400;
+	text-align: center;
+	display: block;
+}
+
+.about h3 {
+	font-size: 2.5em;
+	margin-bottom: 0;
+	margin-top: 0;
+	color: #2d2d2d;
+	font-weight: 300;
+	text-align: center;
+	display: block;
+}
+
+.about .image-round {
+	border-radius: 25px;
+}
+
+.about p {
+	text-align: justify;
+	font-size: 1.5em;
+	margin-right: 8vw;
+	margin-left: 8vw;
+}
+.introduction-p {
+	margin-top: 8vh;
+}
+
+.about ol {
+	margin: 0 8vw 0 8vw;
+}
+
+.about ul {
+	margin: 0 8vw 0 8vw;
+}
+
+.about ol li {
+	font-size: 1.5em;
+	text-align: justify;
+}
+
+.about ul li {
+	font-size: 1.5em;
+	text-align: justify;
+}
+
+@media screen and (max-width: 736px) {
+
+	.about h1 {
+		font-size: 3em;
+	}
+
+	.about h2, h3 {
+		font-size: 2.5em;
+	}
+
+	.about p, .about ol li, .about ul li {
+		font-size: 1.2em;
+	}
 }
 
 html {

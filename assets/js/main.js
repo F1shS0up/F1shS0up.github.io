@@ -313,11 +313,11 @@ var settings = {
 	});
 
 })(jQuery);
-$(document).ready(function () {
+/*$(document).ready(function () {
 	$(this).scrollTop(0);
-});
+});*/
 
-const elementsToFadeInUpOnScroll = document.querySelectorAll("h1, .engine h2, .blog h2, h3, h4, .engine p, .blog p, .engine ol, .blog ol, .engine video, .blog video, .engine img, .blog img, .engine ul, .blog ul");
+const elementsToFadeInUpOnScroll = document.querySelectorAll("h1, .engine h2, .blog h2, .about h2, h3, h4, .engine p, .blog p, .about p, .engine ol, .blog ol, .about ol, .engine video, .blog video, .about video, .engine img, .blog img, .about img, .engine ul, .blog ul, .about ul");
 if (!navigator.userAgentData.mobile) {
 	if (elementsToFadeInUpOnScroll) {
 		window.addEventListener("scroll", function (event) {
