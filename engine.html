@@ -46,7 +46,7 @@
 		<img src="images/SDL.png" alt="" class="image-round image medium floatR" style="box-shadow: 10px 10px #6d7778; margin-bottom: 4vh">
 
 		<p>
-			I have been writing this 2D game engine since July 2023 in C++ with the help of SDL2 (In future I will move it to SDL3 if it releases). The engine is simply static library(.lib), which is then used in game project.
+			I have been writing this 2D game engine since <b>July 2023</b> in <b>C++</b> with the help of <b>SDL2</b> (In future I will move it to SDL3 if it releases). The engine is simply <b>static library(.lib)</b>, which is then used in game project.
 			For rendering I use SDL Renderer, which seems to do the job for now.
 			As for more technical side of engine it uses <a href="#ecs" class="new-color-link">ECS</a>, which makes it fast enough for my demands.
 			<br>
@@ -67,9 +67,9 @@
 			How it started?
 		</h2>
 		<p>
-			I started thinking about making a game engine after I switched from Unity to Unreal Engine.
+			I started thinking about making a game engine after I <b>switched</b> from Unity to Unreal Engine.
 			The urge to make an engine came from my disability to adapt to the Unreal Engine. I couldn't get into my real pace and I didn't enjoy it.
-			It was crashing constantly, many bugs that weren't caused by me and much more. I did't want to go back to Unity either, because at that time they changed their pricing plan,
+			It was <b>crashing</b> constantly, many bugs that weren't caused by me and much more. I didn't want to go back to Unity either, because at that time they changed their <b>pricing plan</b>,
 			which made it worse for indie developers.
 		</p>
 		<p>
@@ -83,7 +83,7 @@
 			</b>
 
 		<p>
-			I decided not to try godot because of the lack of documentation for C# users, I would also rather use C++. I also thought of using framework like XNA(currently monogame) or SDL.
+			I decided not to try godot because of the <b>lack of documentation</b> for C# users, I would also rather use <b>C++</b>. I also thought of using <b>framework</b> like XNA(currently monogame) or SDL.
 			Then it striked me, I could use some framework or library like SDL for rendering and create Game engine with it.
 		</p>
 		<h2>
@@ -102,11 +102,11 @@
 			The main development
 		</h2>
 		<p>
-			I started with creating some algorithms for drawing two main shapes squares and circles.
+			I started with creating some algorithms for drawing two main shapes <b>squares and circles</b>.
 			After trying to make algorithm for polygons I realized there is special library for it called "GFX Primitives" so I used that. I had to change some bits to make it work, but after a while I fixed it.
 		</p>
 		<p>
-			After that I created transform component just holding position. Then I created square made of 4 lines to create a place to test collision. Collision was really complex so I started with making 2 components:
+			After that I created <b>transform component</b> just holding position. Then I created square made of 4 lines to create a place to test collision. Collision was really complex so I started with making 2 components:
 		</p>
 		<ol>
 			<li><b>Line collider</b> - contains points A and B and normal to these points</li>
@@ -115,8 +115,8 @@
 		<br>
 		<img src="images/circle-intersection.jpg" alt="" class="image extra small floatR">
 		<p>
-			In nutshell, you check if the circle's line
-			(containing point from the middle of the circle and a point in the direction of the other line normal, that will have size of the circle's radius) intersects with the line that you're checking collision with.
+			In nutshell, you check if the <b>circle's line</b>
+			(containing point from the <b>middle</b> of the circle and a point in the direction of the other line normal, that will have size of the circle's radius) <b>intersects</b> with the line that you're checking collision with.
 			If it does that means there's collision. Then we resolve collision
 		</p>
 
@@ -146,10 +146,10 @@
 		<br>
 		<br>
 		<p>
-			This is just collision between a line and circle. There are way more algorithms and formulas to make collision and rigidbody work. Next I wanted to make softbody simulation.
+			This is just collision between a line and circle. There are way more <b>algorithms</b> and formulas to make collision and rigidbody work. Next I wanted to make <b>softbody simulation</b>.
 		<p>
-			I won't go into much detail, but each softbody has points, that have some values like velocity, position and force. Each frame you recalculate these values. You apply forces to the points like gravity.
-			Then to keep it together you create springs. They are just force that contain 2 points and some resting length. If the length is larger than the resting length,
+			I won't go into much detail, but each softbody has <b>mass points</b>, that have some values like <b>velocity, position and force</b>. Each frame you recalculate these values. You apply forces to the points like <b>gravity</b>.
+			Then to keep it together you create <b>springs</b>. They are just force that contain 2 points and some resting length. If the length is larger than the resting length,
 			it applies the force towards the points, if it's smaller, it applies the forces away from each other. There are other things to consider like shape matching, damping and much more...
 		</p>
 		<br>
@@ -162,11 +162,11 @@
 		<br>
 		<br>
 		<p>
-			After that I just started creating more important and usable things like sprite, movement, animator, sprite sheet and much more.
+			After that I just started creating more important and usable things like <>sprite, movement, animator, sprite sheet and much more</b>.
 		<p>
-			If you want to learn more about circle(or particle) collision I suggest you see this <a href="https://www.youtube.com/watch?v=eED4bSkYCB8" class="new-color-link">Video</a>
+			If you want to learn more about <b>circle(or particle)</b> collision I suggest you see this <a href="https://www.youtube.com/watch?v=eED4bSkYCB8" class="new-color-link">Video</a>
 		<p>
-			If you would like to look closer to how softbodies work look at these videos:
+			If you would like to look closer to how <b>softbodies</b> work look at these videos:
 			<ol type="I">
 				<li><a href="https://www.youtube.com/watch?v=kyQP4t_wOGI" class="new-color-link">Softbody physics</a></li>
 				<li><a href="https://www.youtube.com/watch?v=3OmkehAJoyo" class="new-color-link">Jelly car physics</a></li>
