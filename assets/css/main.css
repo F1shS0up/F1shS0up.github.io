@@ -4428,7 +4428,10 @@
 		width: calc(100% - 16vw);
 		margin: 0 8vw 0 8vw;
 	}
-	
+	.image.extra.small.no.mobile {
+		width: 10em;
+		height: auto;
+	}
 }
 .image.floatR {
 	float: right;
