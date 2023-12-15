@@ -4372,13 +4372,13 @@
 	}
 }
 .image.fit .roundcorners img {
-	border-radius: 25px;
+	border-radius: 15px;
 }
 .image.half.fit .roundcorners img {
-	border-radius: 25px;
+	border-radius: 15px;
 }
 .roundcorners {
-	border-radius: 25px;
+	border-radius: 15px;
 }
 .blog .image.half.fit img {
 	
@@ -4476,7 +4476,10 @@
 }
 
 .engine .image-round {
-	border-radius: 25px;
+	border-radius: 15px;
+}
+.blog .image-round {
+	border-radius: 15px;
 }
 
 .engine p {
