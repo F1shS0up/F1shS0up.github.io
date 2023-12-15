@@ -4478,6 +4478,9 @@
 .engine .image-round {
 	border-radius: 25px;
 }
+.blog .image-round {
+	border-radius: 25px;
+}
 
 .engine p {
 	text-align: justify;
