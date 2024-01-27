@@ -11,6 +11,12 @@
 	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="icon" type="image/jpg" href="images/fishsoupico.png">
+	<meta name="og:site_name" content="F1shS0up" />
+	<meta property="og:title" content="Adam Vlčko" />
+	<meta property="og:type" content="website" />
+	<meta property="og:description" content="See my portfolio, blogs or my career" />
+	<meta property="og:image" content="https://f1shs0up.github.io/images/pic02discord.jpg" />
 </head>
 <body>
 
@@ -73,14 +79,19 @@
 			  <p>
 				  So this is a very repetitive, it can be solved in few steps:
 			  </p>
-			  <br>
+
+
+			  <h3>Step 1</h3>
 			  <p>
-				  <b>Step 1:</b> We loop through all vertices of both polygons:
+				 We loop through all vertices of both polygons:
 			  </p>
+			  
 			  <img src="images/codesnippet-8.png" alt="" class="image medium roundcorners center">
-			  <br>
+
+
+			  <h3 id="axis">Step 2</h3>
 			  <p>
-				  <b>Step 2:</b> We get the axis that the shadow is on. To get it we first need to get the side of the polygon. 
+				  We get the axis that the shadow is on. To get it we first need to get the side of the polygon. 
 				  We will get the side by using the index <b>v</b> and then we find the <b>next/upcoming index v</b>. We will then get the positions of the vertices on these indexes. 
 				  Afterwards we will use this to get the perpendicular axis:
 			  </p>
@@ -90,22 +101,92 @@
 				  Then we will normalize this value. The final code can look as so:
 			  </p>
 			  <img src="images/codesnippet-9.png" alt="" class="image medium roundcorners center">
-			  <br>
+
+
+
+			  <h3>Step 3</h3>
 			  <p>
-				  <b>Step 3:</b> When we have this we need to find the min/max points of each polygon(see <a href="#separation" class="new-color-link">this</a>). 
+				  When we have this we need to find the min/max points of each polygon(see <a href="#separation" class="new-color-link">this</a>). 
 				  <br><b>How do we do that?</b>
 				  I would recommend you to create function for this... First of all we will create two floats min and max.
 				  We set min and max to the <a href="dot" class="new-color-link">dot product</a> of the first vertex in the polygon and the axis like this:
+			  </p>
 			  <img src="images/codesnippet-10.png" alt="" class="image medium roundcorners center">
+			  <p>
 				  We will loop through all the vertices of polygon except the first and do the same dot product for each of them as so:
+			  </p>
 			  <img src="images/codesnippet-11.png" alt="" class="image medium roundcorners center">
+			  <p>
 				  When this is done we need to check if the value we calculated is lower than the current minimal or larger than current largest. 
 				  If yes we will overwrite them. Final code for looking up min/max on axis should look like this:
+			  </p>
 			  <img src="images/codesnippet-12.png" alt="" class="image medium roundcorners center">
+
+
+			  <br>
+			  <h3>Step 4</h3>
+			  <p>
+				  Once we have the min/max functions in place just so:
+			  </p>
+			  <img src="images/codesnippet-13.png" alt="" class="image medium roundcorners center">
+			  <p>
+				  We check whether there's gap. We will do it like this:
+			  </p>
+			  <img src="images/codesnippet-14.png" alt="" class="image medium roundcorners center">
+
+
+			  <h3>Step 5</h3>
+			  <p>
+				  If there isn't gap we can start with getting the separation or sometimes called penetration(see <a href="#separation" class="new-color-link">this</a>). 
+				  To do that we need to get the position of polygon projected on the axis. If we think about it there are 3 options that can happen:
+				  <ul>
+					  <li>First polygon on right the second on left - We will move it in the axis(the axis that's perpendicular to the side see <a href="#axis" class="new-color-link">this</a>)</li>
+					  <li>First polygon on left the second on right - We will move it in the opposite direction of axis</li>
+					  <li>Both on same value on the axis - We will choose one direction.</li>
+				  </ul>
+			  </p>
+			  <br>
+			  <p>
+				  First of all we can't use the transform component for position because that's meant as center of mass and center of mass doesn't have to be in the center. 
+				  Therefore we will calculate the average position of all vertices. The function for that can look something like this:
+			  </p>
+			  <img src="images/codesnippet-15.png" alt="" class="image medium roundcorners center">
+			   <p>
+				  Once we have that we will project it on the line and find which one of the 3 is it:
+			  </p>
+			   <img src="images/codesnippet-16.png" alt="" class="image medium roundcorners center">
+
+
+			  <h3>Step 6</h3>
+			  <p>
+				  We need to find the smallest penetration, because we want the smallest way to fix the penetration. The penetration is equal to min2 - max1 or min1 - max2, 
+				  it depends on the position of body we just calculated.
+				  <br>
+				  When the first body is on left we will get the penetration using this:
+			  </p>
+			    <p style="text-align:center"><b>penetration = min2 - max1</b></p>
+			  <p>
+				  When the first body is on right or the body are on the same value we will get the penetration using this:
+			  </p>
+			    <p style="text-align:center"><b>penetration = min1 - max2</b></p>
+			  <p>
+				<a style="color: red; font-weight: 600; text-decoration: none;">NOTE:</a> The penetration will always be negative, therefore to get the "lowest" penetration we could technically say that we will get the largest.
+				The largest is the one most close to zero.
 			  </p>
 			  <p>
-
+				We also need a variable to store the smallest penetration. And we need to set it to the largest possible penetration(in negative, therefore lowest):
 			  </p>
+			  <img src="images/codesnippet-17.png" alt="" class="image medium roundcorners center">
+			  <p>
+				So we will check if penetration is lower than the current lowest penetration. Then we will overwrite the current lowest penetration and the axis:
+			  </p>
+			  <img src="images/codesnippet-18.png" alt="" class="image medium roundcorners center">
+			  <h1>Summary</h1>
+			  <p>
+				The final code should look something like this:
+			  </p>
+			  <img src="images/sat-final.png" alt="" class="image large roundcorners center">
+
 			  <h1>Dot product</h1>
 			  <p style="text-align:center"><b>value = vector1.x * vector2.x + vector1.y * vector2.y</b></p>
 		  </div>
