@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<!--
+	Hielo by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+<head>
+	<title>Adam Vlčko</title>
+	<meta charset="utf-8">
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+	<!-- Header -->
+	<header id="header" class="alt">
+		<div class="logo"><a href="index.html">Adam Vlčko</a></div>
+		<a href="#menu">Menu</a>
+	</header><!-- Nav --><nav id="menu">
+		<ul class="links">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="about.html">About me</a></li>
+			<li><a href="engine.html">Game engine</a></li>
+			<li><a href="blogs.html">Blogs</a></li>
+			<!--<li><a href="elements.html">Elements</a></li>-->
+		</ul>
+	</nav><section class="banner full">
+		<article>
+			<img src="images/rigidbody-part2bg.png" alt="" width="1440" height="961">
+			<div class="inner">
+				<header>
+					<p>SAT algorithm and point of collision</p>
+					<h2>Rigid body physics - Part 3</h2>
+				</header>
+			</div>
+		</article>
+	</section>
+
+	<!--Here goes text-->
+		  <div class="blog">
+			  <h1>How do we solve collision</h1>
+			  <p>
+				  We will have 3 different methods for solving collision:
+			  </p>
+			   <ul>
+				  <li><b>Polygon vs Polygon</b> - We have to use a algorith called <a href="#SAT" class="new-color-link">SAT</a>.</li>
+				  <li><b>Polygon vs Circle</b> - Again we will have to use <a href="#SAT" class="new-color-link">SAT</a>, with a slight difference.</li>
+				  <li><b>Circle vs Circle</b> - We will simply check if the distance is lower or equal to the radiuses added.</li>
+			  </ul>
+			  <h1>SAT</h1>
+			  <h2>What is the purpose of SAT</h2>
+			  <p>
+				  SAT - Separating Axis Theorem. <!--It simply checks every perpendicular axis from each side of both polygons and checks if there is any space between them on this axis.--> 
+				  Basically, the goal of SAT (and every other collision detection) is to test and see if is a gap between two shapes. The method that SAT uses is what makes it unique.
+			  </p>
+			  <h2 id="principle">What is the principle of SAT</h2>
+			  <p>
+				  Let's start by imagining a torch being lit up. If we go arround the two polygon we're checking with the torch, if we see gap in the shadow, it means they are not colliding just like here:
+			  </p>
+			    <img src="images/sat-torch.png" alt="" class="image medium roundcorners center">
+			  <p>
+				  From a programming point of view it would be almost impossible to replicate, due to the inability to check every angle which is technically infinite number of angles to check.
+				  However luckly we don't have to check every angle. We need to check only the angle of each side of both polygons:
+			  </p>
+			    <img src="images/sidetocheck.png" alt="" class="image medium roundcorners center">
+			  <p id="separation">
+				  If I should put it into words: SAT checks if both polygons projected to every perpendicular axis to every side don't have gap.
+			  </p>
+				<img src="images/sat-projection.png" alt="" class="image medium roundcorners center" id="sep">
+			  <h2>How to implement this?</h2>
+			  <p>
+				  So this is a very repetitive, it can be solved in few steps:
+			  </p>
+			  <br>
+			  <p>
+				  <b>Step 1:</b> We loop through all vertices of both polygons:
+			  </p>
+			  <img src="images/codesnippet-8.png" alt="" class="image medium roundcorners center">
+			  <br>
+			  <p>
+				  <b>Step 2:</b> We get the axis that the shadow is on. To get it we first need to get the side of the polygon. 
+				  We will get the side by using the index <b>v</b> and then we find the <b>next/upcoming index v</b>. We will then get the positions of the vertices on these indexes. 
+				  Afterwards we will use this to get the perpendicular axis:
+			  </p>
+			  <p style="text-align:center"><b>PerpendicularX = vertices[v].y - vertices[upcomingV].y</b></p>
+			  <p style="text-align:center"><b>PerpendicularY = vertices[upcomingV].x - vertices[v].x</b></p>
+			   <p>
+				  Then we will normalize this value. The final code can look as so:
+			  </p>
+			  <img src="images/codesnippet-9.png" alt="" class="image medium roundcorners center">
+			  <br>
+			  <p>
+				  <b>Step 3:</b> When we have this we need to find the min/max points of each polygon(see <a href="#separation" class="new-color-link">this</a>). 
+				  <br><b>How do we do that?</b>
+				  I would recommend you to create function for this... First of all we will create two floats min and max.
+				  We set min and max to the <a href="dot" class="new-color-link">dot product</a> of the first vertex in the polygon and the axis like this:
+			  <img src="images/codesnippet-10.png" alt="" class="image medium roundcorners center">
+				  We will loop through all the vertices of polygon except the first and do the same dot product for each of them as so:
+			  <img src="images/codesnippet-11.png" alt="" class="image medium roundcorners center">
+				  When this is done we need to check if the value we calculated is lower than the current minimal or larger than current largest. If yes we will overwrite them. Final code should look like this:
+			  <img src="images/codesnippet-12.png" alt="" class="image medium roundcorners center">
+			  </p>
+			  <h1>Dot product</h1>
+			  <p style="text-align:center"><b>ScalarValue = vector1.x * vector2.x + vector1.y * vector2.y</b></p>
+		  </div>
+	<!-- Footer -->
+
+	<footer id="footer">
+		<div class="container">
+			<ul class="icons">
+				<li><a href="https://twitter.com/m1lksh4k3_g4m3s" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="https://github.com/F1shS0up/" class="icon fa-github"><span class="label">Github</span></a></li>
+				<li><a href="mailto:f1shs0up.vlcko@centrum.cz" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+			</ul>
+		</div>
+	</footer><div class="copyright">
+		Adam Vlčko
+	</div>
+
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+</body>
+</html>
