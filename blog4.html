@@ -91,7 +91,7 @@
 
 			  <h3 id="axis">Step 2</h3>
 			  <p>
-				  We get the axis that the shadow is on. To get it we first need to get the side of the polygon. 
+				  We get the axis that the <b>shadow</b> is on. To get it we first need to get the side of the polygon. 
 				  We will get the side by using the index <b>v</b> and then we find the <b>next/upcoming index v</b>. We will then get the positions of the vertices on these indexes. 
 				  Afterwards we will use this to get the perpendicular axis:
 			  </p>
@@ -108,12 +108,12 @@
 			  <p>
 				  When we have this we need to find the min/max points of each polygon(see <a href="#separation" class="new-color-link">this</a>). 
 				  <br><b>How do we do that?</b>
-				  I would recommend you to create function for this... First of all we will create two floats min and max.
+				  I would recommend you to <b>create function</b> for this... First of all we will create two floats min and max.
 				  We set min and max to the <a href="dot" class="new-color-link">dot product</a> of the first vertex in the polygon and the axis like this:
 			  </p>
 			  <img src="images/codesnippet-10.png" alt="" class="image medium roundcorners center">
 			  <p>
-				  We will loop through all the vertices of polygon except the first and do the same dot product for each of them as so:
+				  We will <b>loop</b> through all the vertices of polygon except the first and do the same dot product for each of them as so:
 			  </p>
 			  <img src="images/codesnippet-11.png" alt="" class="image medium roundcorners center">
 			  <p>
@@ -137,29 +137,29 @@
 
 			  <h3>Step 5</h3>
 			  <p>
-				  If there isn't gap we can start with getting the separation or sometimes called penetration(see <a href="#separation" class="new-color-link">this</a>). 
-				  To do that we need to get the position of polygon projected on the axis. If we think about it there are 3 options that can happen:
-				  <ul>
-					  <li>First polygon on right the second on left - We will move it in the axis(the axis that's perpendicular to the side see <a href="#axis" class="new-color-link">this</a>)</li>
-					  <li>First polygon on left the second on right - We will move it in the opposite direction of axis</li>
-					  <li>Both on same value on the axis - We will choose one direction.</li>
+				  If there <b>isn't gap</b> we can start with getting the separation or sometimes called <b>penetration</b>(see <a href="#separation" class="new-color-link">this</a>). 
+				  To do that we need to get the position of polygon <b>projected on the axis</b>. If we think about it there are 3 options that can happen:
+				  <ul id="3">
+					  <li><b>First polygon on right the second on left</b> - We will move it in the axis(the axis that's perpendicular to the side see <a href="#axis" class="new-color-link">this</a>)</li>
+					  <li><b>First polygon on left the second on right</b> - We will move it in the opposite direction of axis</li>
+					  <li><b>Both on same value on the axis</b> - We will choose one direction.</li>
 				  </ul>
 			  </p>
 			  <br>
 			  <p>
-				  First of all we can't use the transform component for position because that's meant as center of mass and center of mass doesn't have to be in the center. 
-				  Therefore we will calculate the average position of all vertices. The function for that can look something like this:
+				  First of all we can't use the transform component for position because that's meant as <b>center of mass</b> and center of mass doesn't have to be in the center. 
+				  Therefore we will calculate the <b>average position</b> of all vertices. The function for that can look something like this:
 			  </p>
 			  <img src="images/codesnippet-15.png" alt="" class="image medium roundcorners center">
 			   <p>
-				  Once we have that we will project it on the line and find which one of the 3 is it:
+				  Once we have that we will project it on the line and find which one of the <a href="#3" class="new-color-link">three</a> is it:
 			  </p>
 			   <img src="images/codesnippet-16.png" alt="" class="image medium roundcorners center">
 
 
 			  <h3>Step 6</h3>
 			  <p>
-				  We need to find the smallest penetration, because we want the smallest way to fix the penetration. The penetration is equal to min2 - max1 or min1 - max2, 
+				  We need to find the <b>smallest penetration</bb>, because we want the smallest way to fix the penetration. The penetration is equal to min2 - max1 or min1 - max2, 
 				  it depends on the position of body we just calculated.
 				  <br>
 				  When the first body is on left we will get the penetration using this:
