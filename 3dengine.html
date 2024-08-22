@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<!--
+	Hielo by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+	<title>Adam Vlčko</title>
+	<meta charset="utf-8">
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="icon" type="image/jpg" href="images/fishsoupico.png">
+	<meta name="og:site_name" content="F1shS0up" />
+	<meta property="og:title" content="Adam Vlčko" />
+	<meta property="og:type" content="website" />
+	<meta property="og:description" content="See my portfolio, blogs or my career" />
+	<meta property="og:image" content="https://f1shs0up.github.io/images/pic02discord.jpg" />
+
+</head>
+
+<body>
+
+	<!-- Header -->
+	<header id="header" class="alt">
+		<div class="logo"><a href="index.html">Adam Vlčko</a></div>
+		<a href="#menu">Menu</a>
+	</header><!-- Nav -->
+	<nav id="menu">
+		<ul class="links">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="about.html">About me</a></li>
+			<li><a href="2dengine.html">2D physics engine</a></li>
+			<li><a href="3dengine.html">3D physics engine</a></li>
+			<li><a href="blogs.html">Blogs</a></li>
+			<!--<li><a href="elements.html">Elements</a></li>-->
+		</ul>
+	</nav>
+	<section class="banner full">
+		<article>
+			<img src="images/3DEngineShowcase.jpg" alt="" width="1440" height="961">
+			<div class="inner">
+				<header>
+					<p>this page is about my</p>
+					<h2>3D game engine</h2>
+				</header>
+			</div>
+		</article>
+	</section>
+
+	<div class="custom">
+		<h1>
+			Introduction
+		</h1>
+
+		<img src="images/opengl.jpg" alt="" class="roundcorners small floatR"
+			style="box-shadow: 10px 10px #6d7778; margin-bottom: 4vh">
+
+		<p>
+			When I came back from holiday, I had a little phase where I didn't really know what to do.
+			Because of that I thought that this is the best time to create some weird illusion game. Popular titles in
+			this genre are Superliminal or Antichamber. I regret choosing <b>UE5</b> for it because again it
+			<b>crashed</b>
+			after 6 weeks of work and I could never get it running again. So I got angry and decided to create my own
+			engine from
+			scratch. This time I decided against using ECS. Also I read about how deferred shading is sometimes faster
+			than forward shading so I gave it a go using <b>OpenGL</b>.
+		</p>
+		<h1>
+			Info
+		</h1>
+		<p>
+			As for more technical side of engine it uses <b>OpenGL</b>, which seems to do the job for now. Futurewise I
+			might move to Vulkan due to better performance. I use
+			<a href="blog5.html" class="new-color-link">deferred shading</a>,
+			that makes it faster than forward shading for scenes with many objects. For lighting model I use
+			<b>phong lighting model</b>. Post processing is also included in the engine, right now it's just bloom
+			effect. Frustum culling for cameras and lighting render passes made using radar approach(see <a
+				href="https://www.lighthouse3d.com/tutorials/view-frustum-culling/radar-approach-testing-points/"
+				class="new-color-link">lighthouse3d tutorial</a>).
+			<br>
+			<img src="images/GBuffer2.jpg" alt="" class="roundcorners half-fit center">
+		</p>
+		<h1>
+			How does it work?
+		</h1>
+		<p>
+			Let's divide this into steps:
+		<ul>
+			<li><a href="#initialize" class="new-color-link">Initialize</a></li>
+			<li><a href="#update" class="new-color-link">Update</a></li>
+			<li><a href="#render" class="new-color-link">Render</a></li>
+			<li><a href="#cleanup" class="new-color-link">Cleanup</a></li>
+		</ul>
+		</p>
+
+		<h2 id="initialize">Initialize</h2>
+		<p>
+			First of all we create a window here. I created a window option struct holding the basic window info
+			including resolution, type or title. We then use this info to create the window. As for type I have 3
+			popular options: fullscreen, windowed and borderless. I then use this info later when creating camera which
+			also has built-in enum for handling aspect ratios. It includes black bars, strech, expand or keep
+			resolution.
+		</p>
+		<img src="images/Blackbars.jpg" alt="" class="roundcorners half-fit center">
+		<p>
+			After creating window I get the path where asset folder is. Using it I load textures, shaders or models
+			depending on the necessity.
+			Then I invoke Init function for all entities and components.
+		</p>
+		<h2 id="update">Update</h2>
+		<p>
+			Update function is fairly simple. First I check whether update should even be performed depending on
+			focusness of current window. Then I store mouse position and I run 3 calls PreUpdate, Update and PostUpdate.
+			This helps me control the order of updates.
+		</p>
+		<img src="images/Update.png" alt="" class="roundcorners half-fit center">
+		<h2 id="render">Render</h2>
+		<p>
+			Rendering is the most complex part of engine so I will tell it in a nutshell. Here as I already mentioned I
+			use <b>Deferred Rendering</b>.
+			At the start I clear the color and depth buffers. I get lightspace matrix from directional light and I set
+			uniforms with it.
+		</p>
+		<p>
+			Then I render shadow maps from all lights and pass the light data to my storage buffer. This data has
+			positions, directions, colors and more.
+		</p>
+		<p>
+			Here comes the main color pass. I render from each camera, the result is stored in cameras FBO. I get the
+			main camera and I blit it to window, here things like black bars do they work by applying offset where the
+			FBO is blit. And that's it. The deferred rendering part is already done in camera where it merges all of
+			textures into one final.
+		</p>
+		<h2 id="cleanup">Cleanup</h2>
+		<p>
+			As for cleanup I simply destroy all entities and components. I need to do this manually because I don't use
+			smart pointers.
+		</p>
+	</div>
+
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="container">
+			<ul class="icons">
+				<li><a href="https://x.com/f1sh_s0up_" class="icon fa-twitter"><span class="label">Twitter</span></a>
+				</li>
+				<li><a href="https://github.com/F1shS0up/" class="icon fa-github"><span class="label">Github</span></a>
+				</li>
+				<li><a href="mailto:f1shs0up.vlcko@centrum.cz" class="icon fa-envelope-o"><span
+							class="label">Email</span></a></li>
+			</ul>
+		</div>
+
+	</footer>
+	<div class="copyright">
+		Adam Vlčko
+	</div>
+
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+</body>
+
+</html>

@@ -5,6 +5,7 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html>
+
 <head>
 	<title>Adam Vlčko</title>
 	<meta charset="utf-8">
@@ -18,23 +19,27 @@
 	<meta property="og:description" content="See my portfolio, blogs or my career" />
 	<meta property="og:image" content="https://f1shs0up.github.io/images/pic02discord.jpg" />
 </head>
+
 <body>
 
 	<!-- Header -->
 	<header id="header" class="alt">
 		<div class="logo"><a href="index.html">Adam Vlčko</a></div>
 		<a href="#menu">Menu</a>
-	</header><!-- Nav --><nav id="menu">
+	</header><!-- Nav -->
+	<nav id="menu">
 		<ul class="links">
 			<li><a href="index.html">Home</a></li>
 			<li><a href="about.html">About me</a></li>
-			<li><a href="engine.html">Game engine</a></li>
+			<li><a href="2dengine.html">2D physics engine</a></li>
+			<li><a href="3dengine.html">3D physics engine</a></li>
 			<li><a href="blogs.html">Blogs</a></li>
 			<!--<li><a href="elements.html">Elements</a></li>-->
 		</ul>
-	</nav><section class="banner full">
+	</nav>
+	<section class="banner full">
 		<article>
-			<img src="images/rigidbody-part2bg.png" alt="" width="1440" height="961">
+			<img src="images/rigidbody-part2bg.jpg" alt="" width="1440" height="961">
 			<div class="inner">
 				<header>
 					<p>Applying forces and velocities</p>
@@ -45,95 +50,113 @@
 	</section>
 
 	<!--Here goes text-->
-		  <div class="blog">
-			  <h1>Adding force per frame</h1>
-			  <p>
-				 At start of each frame we reset the force to zero. Then we can add forces like gravity like this:
-			  </p>
-			  <p style="text-align:center"><b>Force += Vector(0, 100)</b></p>
-			  <p>
-				 But this will only move it we can't forget about rotation. I would advice you to create function for it, I like to call it AddForceAtPoint.
-				 This function will take three arguments: <b>The force</b> that we want to apply, <b>the position</b> of the object and <b>the point</b> we want to apply force at.
-				 First we will add the force the same way, then we need to calculate torque. We will get the vector pointing from objects position to the impact point then we will get the cross product of the force and the vector.
-				 If we put everything together it would look like this:
-			  </p>
-			  <img src="images/codesnippet-2.png" alt="" class="image medium roundcorners center">
-			  <h1>Acceleration</h1>
-			  <p>
-				 We first need to calculate acceleration. We alreaady know three laws of motion: inertia, force and action & reaction. Here we will use the second one(see <a href="blog2.html#newton-laws" class="new-color-link">Three Laws of Motion</a>)
-			  </p>
-				 <p>For linear acceleration we will use this:</p>
-				  <p><b>linear acceleration = force / mass</b>, it can be wrote as: <br><b>linear acceleration = force * inverseMass</b></p>
-				 <p>For angular acceleration it will be the same but with torque and moment of inertia:</p>
-				  <p><b>angular acceleration = torque / momentOfInertia</b>, therefore we will use it like this: <br><b>angular acceleration = torque * inverseMomentOfInertia</b></p>
-				<br>
-				 <p>From the acceleration we will calculate the velocity, this is how it should look like:</p>
-			  <img src="images/codesnippet-3.png" alt="" class="image medium roundcorners center">
-					
-			<h1><a id="euler"> Numerical Integration</a></h1>
-				<p>
-					Also called differential equation solver, in nutshell it servers to change velocity and position in some order...
-				</p>
-				<p>
-						The most popular one is called <b>Explicit euler</b> which looks like this:
-				</p>
-					<p style="text-align:center"><b>CurrentVelocity = LastFrameVelocity + (LastFrameAcceleration * dt)</b></p>
-					<p style="text-align:center"><b>CurrentPosition = LastFramePosition + (LastFrameVelocity * dt)</b></p>
-					<p>Although it's not the most acurrate it is very simple to implement.</p>
-				<p>
-					Next one is <b>Implicit euler</b> which looks like this:
-				</p>
-					<p style="text-align:center"><b>CurrentVelocity = LastFrameVelocity + (CurrentAcceleration * dt)</b></p>
-					<p style="text-align:center"><b>CurrentPosition = LastFramePosition + (CurrentVelocity * dt)</b></p>
-					<p>This is the most stable one, that's why I use it</p>
-				<p>
-					There is also <b>Semi-Implicit euler</b> which looks like this:
-				</p>
-					<p style="text-align:center"><b>CurrentVelocity = LastFrameVelocity + (LastFrameAcceleration * dt)</b></p>
-					<p style="text-align:center"><b>CurrentPosition = LastFramePosition + (CurrentVelocity * dt)</b></p>
-					<p>This provides a middle ground between the two</p>
-					<br>
-					<p>There also other Numerical Integrations that are more acurate like Runge Kutta 4th Order but I don't use them...</p>
-				<br>
-				<p> After this it should look somewhat similar to this:</p>
-			  <img src="images/codesnippet-4.png" alt="" class="image medium roundcorners center">
-			  
-			  <h1>Air resistance / Drag</h1>
-			  <img src="images/air-resistance.png" alt="" class="image extra small floatR roundcorners">
-			  <p>
-				  Air resistance is defined as the force that acts in the opposite direction to an object moving through the air
-			  </p>
-			  <p><b>Linear Drag</b></p>
-			  <p>
-				  This will be a constant value defined in each rigid body, it will define how big will the resistance act in the opposite direction of movement.
-				  To calculate this we will normalize the linear velocity and then we will multiply it by the linear drag. After that we will subtract it from current velocity, it should look like this:
-			  </p>
-			  <img src="images/codesnippet-5.png" alt="" class="image medium roundcorners center">
-			  <br>
-			  <p><b>Angular Drag</b></p>
-			  <p>
-				  This will also be a constant but it will act differently. Instead of being a scalar value of the drag, this will be value between 0-1, that will define how much od the angular velocity will be acted in the opposite rotation.
-				  It should look like this:
-			  </p>
-			  <img src="images/codesnippet-6.png" alt="" class="image medium roundcorners center">
+	<div class="custom">
+		<h1>Adding force per frame</h1>
+		<p>
+			At start of each frame we reset the force to zero. Then we can add forces like gravity like this:
+		</p>
+		<p style="text-align:center"><b>Force += Vector(0, 100)</b></p>
+		<p>
+			But this will only move it we can't forget about rotation. I would advice you to create function for it, I
+			like to call it AddForceAtPoint.
+			This function will take three arguments: <b>The force</b> that we want to apply, <b>the position</b> of the
+			object and <b>the point</b> we want to apply force at.
+			First we will add the force the same way, then we need to calculate torque. We will get the vector pointing
+			from objects position to the impact point then we will get the cross product of the force and the vector.
+			If we put everything together it would look like this:
+		</p>
+		<img src="images/codesnippet-2.png" alt="" class="medium roundcorners center">
+		<h1>Acceleration</h1>
+		<p>
+			We first need to calculate acceleration. We alreaady know three laws of motion: inertia, force and action &
+			reaction. Here we will use the second one(see <a href="blog2.html#newton-laws" class="new-color-link">Three
+				Laws of Motion</a>)
+		</p>
+		<p>For linear acceleration we will use this:</p>
+		<p><b>linear acceleration = force / mass</b>, it can be wrote as: <br><b>linear acceleration = force *
+				inverseMass</b></p>
+		<p>For angular acceleration it will be the same but with torque and moment of inertia:</p>
+		<p><b>angular acceleration = torque / momentOfInertia</b>, therefore we will use it like this: <br><b>angular
+				acceleration = torque * inverseMomentOfInertia</b></p>
+		<br>
+		<p>From the acceleration we will calculate the velocity, this is how it should look like:</p>
+		<img src="images/codesnippet-3.png" alt="" class="medium roundcorners center">
 
-			  <br>
-			  <h1>Summary</h1>
-			  <p>After all the writting your code should look like this:</p>
-			  <img src="images/codesnippet-7.png" alt="" class="image medium roundcorners center">
+		<h1><a id="euler"> Numerical Integration</a></h1>
+		<p>
+			Also called differential equation solver, in nutshell it servers to change velocity and position in some
+			order...
+		</p>
+		<p>
+			The most popular one is called <b>Explicit euler</b> which looks like this:
+		</p>
+		<p style="text-align:center"><b>CurrentVelocity = LastFrameVelocity + (LastFrameAcceleration * dt)</b></p>
+		<p style="text-align:center"><b>CurrentPosition = LastFramePosition + (LastFrameVelocity * dt)</b></p>
+		<p>Although it's not the most acurrate it is very simple to implement.</p>
+		<p>
+			Next one is <b>Implicit euler</b> which looks like this:
+		</p>
+		<p style="text-align:center"><b>CurrentVelocity = LastFrameVelocity + (CurrentAcceleration * dt)</b></p>
+		<p style="text-align:center"><b>CurrentPosition = LastFramePosition + (CurrentVelocity * dt)</b></p>
+		<p>This is the most stable one, that's why I use it</p>
+		<p>
+			There is also <b>Semi-Implicit euler</b> which looks like this:
+		</p>
+		<p style="text-align:center"><b>CurrentVelocity = LastFrameVelocity + (LastFrameAcceleration * dt)</b></p>
+		<p style="text-align:center"><b>CurrentPosition = LastFramePosition + (CurrentVelocity * dt)</b></p>
+		<p>This provides a middle ground between the two</p>
+		<br>
+		<p>There also other Numerical Integrations that are more acurate like Runge Kutta 4th Order but I don't use
+			them...</p>
+		<br>
+		<p> After this it should look somewhat similar to this:</p>
+		<img src="images/codesnippet-4.png" alt="" class="medium roundcorners center">
 
-		  </div>
+		<h1>Air resistance / Drag</h1>
+		<img src="images/air-resistance.png" alt="" class="extra-small floatR roundcorners">
+		<p>
+			Air resistance is defined as the force that acts in the opposite direction to an object moving through the
+			air
+		</p>
+		<p><b>Linear Drag</b></p>
+		<p>
+			This will be a constant value defined in each rigid body, it will define how big will the resistance act in
+			the opposite direction of movement.
+			To calculate this we will normalize the linear velocity and then we will multiply it by the linear drag.
+			After that we will subtract it from current velocity, it should look like this:
+		</p>
+		<img src="images/codesnippet-5.png" alt="" class="medium roundcorners center">
+		<br>
+		<p><b>Angular Drag</b></p>
+		<p>
+			This will also be a constant but it will act differently. Instead of being a scalar value of the drag, this
+			will be value between 0-1, that will define how much od the angular velocity will be acted in the opposite
+			rotation.
+			It should look like this:
+		</p>
+		<img src="images/codesnippet-6.png" alt="" class="medium roundcorners center">
+
+		<br>
+		<h1>Summary</h1>
+		<p>After all the writting your code should look like this:</p>
+		<img src="images/codesnippet-7.png" alt="" class="medium roundcorners center">
+
+	</div>
 	<!-- Footer -->
 
 	<footer id="footer">
 		<div class="container">
 			<ul class="icons">
-				<li><a href="https://twitter.com/m1lksh4k3_g4m3s" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-				<li><a href="https://github.com/F1shS0up/" class="icon fa-github"><span class="label">Github</span></a></li>
-				<li><a href="mailto:f1shs0up.vlcko@centrum.cz" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+				<li><a href="https://x.com/f1sh_s0up_" class="icon fa-twitter"><span class="label">Twitter</span></a>
+				</li>
+				<li><a href="https://github.com/F1shS0up/" class="icon fa-github"><span class="label">Github</span></a>
+				</li>
+				<li><a href="mailto:f1shs0up.vlcko@centrum.cz" class="icon fa-envelope-o"><span
+							class="label">Email</span></a></li>
 			</ul>
 		</div>
-	</footer><div class="copyright">
+	</footer>
+	<div class="copyright">
 		Adam Vlčko
 	</div>
 
@@ -145,4 +168,5 @@
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 </body>
+
 </html>

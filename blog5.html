@@ -39,11 +39,11 @@
 	</nav>
 	<section class="banner full">
 		<article>
-			<img src="images/bg.jpg" alt="" width="1440" height="961">
+			<img src="images/formulaFinal.jpg" alt="" width="1440" height="961">
 			<div class="inner">
 				<header>
-					<p>How I fixed the system of my</p>
-					<h2>Game Engine</h2>
+					<p>What is deferred rendering and why use it</p>
+					<h2>New game engine</h2>
 				</header>
 			</div>
 		</article>
@@ -51,33 +51,12 @@
 
 	<!--Here goes text-->
 	<div class="custom">
-		<h1>What was the problem?</h1>
+		<h1>Why?</h1>
 		<p>
-			My engine works on the principle of statit library. I simply build the engine as a library and I include
-			this library in my game project.
-			The issue I was facing was, that I needed some way to make some custom game classes that I would implement
-			in game project instead of implementing it in engine project.
-		</p>
-		<h1>1st idea</h1>
-		<p>
-			I first thought of simply creating an independent game system that would initiate the engines functions.
-			Problem with this is that sometimes we want to initiate functions from the engine.
-			As an example, let's say we have a collider component implemented in engine.
-			When collider leaves collision we want to initiate a function in character movement, a component implemented
-			in game project, that's going to disallow the player to move the character.
-			With this system it coudn't be done, or it could but there is easier ways.
-		</p>
-		<h1>2nd idea</h1>
-		<img src="images/gameToEngine.png" alt="" class="roundcorners small floatR">
-		<p>
-			I wanted to keep the idea of game system in game project. I realized there is better way to do it, by
-			overriding engines main classes, some of them will be controlled through game some of them will be through
-			engine.
-			Thanks to this I can control functions like Render, Update or Init from game and functions like when
-			collision happens from engine.
-			Also thanks to overriding, I can acquire the data of each entity, such as components which I can use in game
-			project...
-
+			First, I want to talk about why I decided to make a website. I started thinking about making a website when
+			I needed a place for a <b>portfolio</b> and to keep my games and projects together.
+			I thought <b>itch.io</b> would be enough, but unfortunately, I wanted a completely different page for blogs
+			and devlogs, which itch.io doesn't yet have. I also wanted to practice <b>HTML</b> and <b>CSS</b>.
 		</p>
 
 	</div>

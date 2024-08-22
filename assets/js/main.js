@@ -317,7 +317,7 @@ var settings = {
 	$(this).scrollTop(0);
 });*/
 
-const elementsToFadeInUpOnScroll = document.querySelectorAll("h1, .engine h2, .blog h2, .about h2, h3, h4, .engine p, .blog p, .about p, .engine ol, .blog ol, .about ol, .engine video, .blog video, .about video, .engine img, .blog img, .about img, .engine ul, .blog ul, .about ul");
+const elementsToFadeInUpOnScroll = document.querySelectorAll(".custom h1, .custom h2, .custom h3, .custom h4, .custom p, .custom ol, .custom video, .custom img, .custom ul");
 if (!navigator.userAgentData.mobile) {
 	if (elementsToFadeInUpOnScroll) {
 		window.addEventListener("scroll", function (event) {
