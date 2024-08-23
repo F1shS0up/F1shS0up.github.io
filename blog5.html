@@ -39,11 +39,11 @@
 	</nav>
 	<section class="banner full">
 		<article>
-			<img src="images/formulaFinal.jpg" alt="" width="1440" height="961">
+			<img src="images/GBuffer2Banner.jpg" alt="" width="1440" height="961">
 			<div class="inner">
 				<header>
 					<p>What is deferred rendering and why use it</p>
-					<h2>New game engine</h2>
+					<h2>Deferred rendering</h2>
 				</header>
 			</div>
 		</article>
@@ -51,13 +51,45 @@
 
 	<!--Here goes text-->
 	<div class="custom">
-		<h1>Why?</h1>
+		<h1>Why not use forward rendering?</h1>
 		<p>
-			First, I want to talk about why I decided to make a website. I started thinking about making a website when
-			I needed a place for a <b>portfolio</b> and to keep my games and projects together.
-			I thought <b>itch.io</b> would be enough, but unfortunately, I wanted a completely different page for blogs
-			and devlogs, which itch.io doesn't yet have. I also wanted to practice <b>HTML</b> and <b>CSS</b>.
+			Well to answer that we need to know how rendering even works. Normally you tell OpenGL to draw some vertex
+			data(position, normal, UV...). OpenGL takes the data and gives it to current shader in use. First the
+			<b>vertex
+				shader</b>, then <b>tessalation shaders</b>, <b>geometry shader</b> after that to <b>rasterizer</b> and
+			finally to <b>fragment shader</b>.
 		</p>
+		<img src="images/OpenglRenderingPipeline.png" alt="" class="roundcorners center large">
+		<p>
+			In forward rendering for every pixel computed by rasterizer we do lighting calculations, even if it's behind
+			object or completely out of view(without culling). Rasterizer only changes positions into pixels depending
+			on the resolution. As you may imagine doing lighting calculations on every pixel, even the not
+			visible ones, is very slow.
+		</p>
+		<h1>So what is deferred rendering?</h1>
+		<img src="images/GBufferWithNames.png" alt="" class="roundcorners small floatR">
+		<p>
+			To solve this problem we use <b>deferred rendering or sometimes called deferred shading</b>. Simply we still
+			render all objects in the scene but
+			instead of doing lighting calculations right away we only store necessery <b>object data(positions, normals
+				etc.)</b> by storing them into <b>textures</b>(see image on right).
+			After we render all objects we render a quad over the whole screen.
+			There we get the object information for textures and we use it to calculate lighting for only visible
+			pixels.
+		</p>
+		<h1>Performance comparison</h1>
+		<p>
+			This doesn't necessarily mean <b>better performance</b>. With scenes that have small amount of objects,
+			forward rendering performs better. But with large scenes it's the other way around.
+			You see for deferred shading the
+			amount of lighting calculations is determined by screen resolution. For full hd it's 1920 x 1080 =
+			2'073'600, for 4k it's 3840 x 2160 = 8'294'400 which makes it more consistent. But with forward shading it's
+			determined by both resolution
+			and polygon count. for a scene that covers whole screen it will be <b>way more</b> than in deferred
+			rendering.
+		</p>
+		<br>
+
 
 	</div>
 	<!-- Footer -->
@@ -69,7 +101,7 @@
 				</li>
 				<li><a href="https://github.com/F1shS0up/" class="icon fa-github"><span class="label">Github</span></a>
 				</li>
-				<li><a href="mailto:f1shs0up.vlcko@centrum.cz" class="icon fa-envelope-o"><span
+				<li><a href="mailto:f1shs0up.vlcko@gmail.com" class="icon fa-envelope-o"><span
 							class="label">Email</span></a></li>
 			</ul>
 		</div>

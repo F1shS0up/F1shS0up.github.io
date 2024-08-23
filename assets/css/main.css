@@ -3374,7 +3374,7 @@ table.alt tbody tr td {
 }
 
 .wrapper.style3 .box {
-	border-color: rgba(255, 255, 255, 0.25);
+	border-color: rgba(0, 0, 0, 0.25);
 }
 
 .wrapper.style3 input[type="submit"],
