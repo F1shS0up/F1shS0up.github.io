@@ -7,6 +7,16 @@
   <title>Adam Vlčko</title>
   <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Adam Vlčko" />
+  <link rel="manifest" href="/images/site.webmanifest" />
+  <meta name="og:site_name" content="Adam Vlčko" />
+  <meta property="og:title" content="Adam Vlčko" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="See my portfolio, blogs or my career" />
   <style>
     html,
     body {
@@ -102,6 +112,12 @@
       background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.6), transparent);
       animation: steam 2s infinite ease-in-out;
       border-radius: 50%;
+    }
+
+    a.buy-coffee-btn:active {
+      transform: scale(0.95);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      filter: brightness(0.95);
     }
 
     @keyframes steam {
@@ -209,10 +225,14 @@
 
 <body>
   <div class="top-header">
-    <div class="logo">Adam Vlčko</div>
+    <div class="logo">
+      <img src="images/favicon.svg" alt="Logo" style="height: 48px; margin-right: 0.5rem; vertical-align: middle;" />
+      Adam Vlčko
+    </div>
     <div class="social-icons">
       <a href="https://x.com/f1sh_s0up_" title="Twitter"><i class="fab fa-twitter"></i></a>
-      <a href="https://f1shs0up.itch.io/" title="Twitter"><i class="fab fa-itch-io"></i></a>
+      <a href="https://f1shs0up.itch.io/" title="Itch.io"><i class="fab fa-itch-io"></i></a>
+      <a href="https://discord.gg/PJQUmFGyww" title="Join Discord"><i class="fab fa-discord"></i></a>
       <a href="https://github.com/F1shS0up" title="Github"><i class="fab fa-github"></i></a>
       <a href="https://www.paypal.com/donate/?hosted_button_id=HMPDGGYSC8848" title="Paypal"><i
           class="fab fa-paypal"></i></a>
