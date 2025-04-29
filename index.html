@@ -154,6 +154,7 @@
     }
 
     .box {
+      text-decoration: none;
       position: relative;
       height: 200px;
       width: 300px;
@@ -166,6 +167,7 @@
       justify-content: center;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+
     }
 
     .box::before {
@@ -226,7 +228,7 @@
 <body>
   <div class="top-header">
     <div class="logo">
-      <img src="images/favicon.svg" alt="Logo" style="height: 48px; margin-right: 0.5rem; vertical-align: middle;" />
+      <img src="images/favicon.svg" alt="Logo" style="height: 27px; margin-right: 0.5rem; vertical-align: middle;" />
       Adam Vlčko
     </div>
     <div class="social-icons">
@@ -254,13 +256,18 @@
         build worlds people can play and enjoy.
       </p>
       <div class="grid">
-        <div class="box" style="background-image: url('images/western.jpg');"><span>Western game</span></div>
-        <div class="box" style="background-image: url('images/suffering.jpg');"><span>Suffering</span></div>
-        <div class="box" style="background-image: url('images/cottage_ville.jpg');"><span>Cottage ville</span></div>
-        <div class="box" style="background-image: url('images/fair_trade_ride.jpg');"><span>Fair Trade Ride</span></div>
-        <div class="box" style="background-image: url('images/untitled_laser_sword_game.jpg');"><span>Untitled Laser
-            Sword Game</span></div>
-        <div class="box" style="background-image: url('images/esc-ape.jpg');"><span>Esc-Ape</span></div>
+        <a class="box" style="background-image: url('images/western.jpg');"><span>Western game</span></a>
+        <a href="https://f1shs0up.itch.io/suffering" class="box"
+          style="background-image: url('images/suffering.jpg');"><span>Suffering</span></a>
+        <a href="https://store.steampowered.com/app/2318780/CottageVille/" class="box"
+          style="background-image: url('images/cottage_ville.jpg');"><span>Cottage ville</span></a>
+        <a href="https://f1shs0up.itch.io/fairtrade-ride" class="box"
+          style="background-image: url('images/fair_trade_ride.jpg');"><span>Fair Trade Ride</span></a>
+        <a href="https://f1shs0up.itch.io/untitled-laser-sword-game" class="box"
+          style="background-image: url('images/untitled_laser_sword_game.jpg');"><span>Untitled Laser Sword
+            Game</span></a>
+        <a href="https://danqzq.itch.io/esc-ape" class="box"
+          style="background-image: url('images/esc-ape.jpg');"><span>Esc-Ape</span></a>
       </div>
     </section>
   </main>
