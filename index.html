@@ -4,20 +4,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Add Font Awesome CDN -->
+  <title>Adam Vlčko</title>
+  <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-  <title>Adam Vlcko</title>
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
+    html,
     body {
+      height: 100%;
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #fadecd;
       color: #451e42;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
     }
 
     .top-header {
@@ -27,20 +29,20 @@
       padding: 1rem 2rem;
     }
 
-    .top-header .logo {
+    .logo {
       font-weight: bold;
       font-size: 1.25rem;
     }
 
-    .top-header .social-icons a {
+    .social-icons a {
       margin-left: 1rem;
       text-decoration: none;
       color: #451e42;
       font-size: 1.2rem;
-      transition: color 0.3s;
+      transition: color 0.3s ease;
     }
 
-    .top-header .social-icons a:hover {
+    .social-icons a:hover {
       color: #82194d;
     }
 
@@ -57,23 +59,61 @@
     }
 
     a.buy-coffee-btn {
-
-      display: inline-block;
-      margin-top: 1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0.75rem 1.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 12px;
       background: linear-gradient(135deg, #ba3057, #f5514e);
       color: white;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 30px;
-      text-transform: uppercase;
-      font-weight: bold;
-      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    a.buy-coffee-btn i {
+      font-size: 1.4rem;
       transition: transform 0.3s ease;
-      text-decoration: none;
     }
 
     a.buy-coffee-btn:hover {
-      transform: scale(1.05);
+      transform: translateY(-5px) scale(1.03);
+      filter: brightness(1.1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    a.buy-coffee-btn:hover i {
+      transform: rotate(-10deg);
+    }
+
+    a.buy-coffee-btn::after {
+      content: '';
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 40px;
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.6), transparent);
+      animation: steam 2s infinite ease-in-out;
+      border-radius: 50%;
+    }
+
+    @keyframes steam {
+      0% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: translateX(-50%) translateY(-30px);
+        opacity: 0;
+      }
     }
 
     section {
@@ -85,27 +125,31 @@
       max-width: 600px;
       margin: 0 auto;
       font-size: 1.25rem;
-      color: #666;
+      color: #82194d;
     }
 
     .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 1000px;
+      margin: 2rem auto 0;
       gap: 2rem;
-      margin-top: 2rem;
     }
 
     .box {
       position: relative;
       height: 200px;
-      border-radius: 8px;
+      width: 300px;
+      border-radius: 12px;
       overflow: hidden;
       background-size: cover;
       background-position: center;
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      transition: transform .5s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .box::before {
@@ -114,14 +158,14 @@
       inset: 0;
       background: linear-gradient(135deg, #ba3057, #f5514e);
       opacity: 0;
-      transition: opacity .5s ease;
+      transition: opacity 0.3s ease;
     }
 
     .box span {
       position: relative;
       opacity: 0;
       transform: translateY(30px);
-      transition: opacity .5s ease, transform .5s ease;
+      transition: opacity 0.3s ease, transform 0.3s ease;
       font-weight: bold;
       margin-bottom: 1rem;
       color: white;
@@ -129,11 +173,12 @@
     }
 
     .box:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     }
 
     .box:hover::before {
-      opacity: 0.5;
+      opacity: 0.8;
     }
 
     .box:hover span {
@@ -147,63 +192,124 @@
       text-align: center;
       font-size: 1rem;
       color: #4a2948;
+      border-top: 1px solid #e1bfa8;
+    }
+
+    #cursor {
+      display: inline-block;
+      font-weight: bold;
+      margin-left: 2px;
+      background: linear-gradient(135deg, #ba3057, #f5514e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: opacity 0.05s ease;
     }
   </style>
-  <script>
-    window.addEventListener('scroll', () => {
-      document.querySelectorAll('.box').forEach(box => {
-        const rect = box.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 50) {
-          box.style.transform = 'translateY(0)';
-          box.style.opacity = '1';
-        }
-      });
-    });
-  </script>
 </head>
 
 <body>
   <div class="top-header">
-    <div class="logo">Adam Vlcko</div>
+    <div class="logo">Adam Vlčko</div>
     <div class="social-icons">
-      <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://x.com/f1sh_s0up_" title="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://f1shs0up.itch.io/" title="Twitter"><i class="fab fa-itch-io"></i></a>
       <a href="https://github.com/F1shS0up" title="Github"><i class="fab fa-github"></i></a>
       <a href="https://www.paypal.com/donate/?hosted_button_id=HMPDGGYSC8848" title="Paypal"><i
           class="fab fa-paypal"></i></a>
     </div>
   </div>
 
-  <header>
-    <h1>I am a solo game dev, working on games.</h1>
-    <a href="https://www.paypal.com/donate/?hosted_button_id=HMPDGGYSC8848" button class="buy-coffee-btn">Buy me
-      coffe</button></a>
-  </header>
+  <main>
+    <header>
+      <h1><span id="typed-text"></span><span id="cursor">|</span></h1>
+      <a href="https://www.paypal.com/donate/?hosted_button_id=HMPDGGYSC8848" class="buy-coffee-btn">
+        <i class="fas fa-mug-hot"></i><span>Buy me coffee</span>
+      </a>
+    </header>
 
-  <section>
-    <h2>My Work</h2>
-    <p class="work-desc">
-      Design is the creation of a plan or convention for the construction of
-      an object or a system as in architectural blueprints.
-    </p>
-    <div class="grid">
-      <div class="box" href="" style="background-image: src('');"><span>Suffering</span></div>
-      <div class="box" style="background-image: url('https://via.placeholder.com/300x200?text=2');"><span>Website
-          Redesign</span></div>
-      <div class="box" style="background-image: url('https://via.placeholder.com/300x200?text=3');"><span>Mobile
-          UI</span></div>
-      <div class="box" style="background-image: url('https://via.placeholder.com/300x200?text=4');"><span>Brand
-          Identity</span></div>
-      <div class="box" style="background-image: url('https://via.placeholder.com/300x200?text=5');"><span>Eco
-          Packaging</span></div>
-      <div class="box" style="background-image: url('https://via.placeholder.com/300x200?text=6');"><span>UX
-          Research</span></div>
-    </div>
-  </section>
+    <section>
+      <h2>My Work</h2>
+      <p class="work-desc">
+        Design is the creation of a plan or convention for the construction of an object or a system as in architectural
+        blueprints.
+      </p>
+      <div class="grid">
+        <div class="box" style="background-image: url('images/western.jpg');"><span>Western game</span></div>
+        <div class="box" style="background-image: url('images/suffering.jpg');"><span>Suffering</span></div>
+        <div class="box" style="background-image: url('images/cottage_ville.jpg');"><span>Cottage ville</span></div>
+        <div class="box" style="background-image: url('images/fair_trade_ride.jpg');"><span>Fair Trade Ride</span></div>
+        <div class="box" style="background-image: url('images/untitled_laser_sword_game.jpg');"><span>Untitled Laser
+            Sword Game</span></div>
+        <div class="box" style="background-image: url('images/esc-ape.jpg');"><span>Esc-Ape</span></div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <a href="mailto:f1shs0up.vlcko@gmail.com" style="color: inherit; text-decoration: none;"><i
-        class="fas fa-envelope"></i> Email me: f1shs0up.vlcko@gmail.com</a>
+    <a href="mailto:f1shs0up.vlcko@gmail.com" style="color: inherit; text-decoration: none;">
+      <i class="fas fa-envelope"></i> Email me: f1shs0up.vlcko@gmail.com
+    </a>
   </footer>
+
+  <script>
+    const phrases = [
+      "I am a solo dev, working on games.",
+      "Creating immersive worlds.",
+      "Coding pixel by pixel.",
+      "Making games that matter.",
+      "One man. Many games.",
+      "Debugging reality..."
+    ];
+
+    const typedText = document.getElementById("typed-text");
+    const cursor = document.getElementById("cursor");
+
+    let currentPhrase = "";
+    let lastPhrase = "";
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function getNewPhrase() {
+      let newPhrase;
+      do {
+        newPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+      } while (newPhrase === lastPhrase);
+      lastPhrase = newPhrase;
+      return newPhrase;
+    }
+
+    function typeLoop() {
+      if (charIndex === 0 && !isDeleting) {
+        currentPhrase = getNewPhrase();
+      }
+
+      typedText.textContent = currentPhrase.substring(0, charIndex);
+
+      if (!isDeleting) {
+        if (charIndex < currentPhrase.length) {
+          charIndex++;
+        } else {
+          isDeleting = true;
+          setTimeout(typeLoop, 2000); // Pause before deleting
+          return;
+        }
+      } else {
+        if (charIndex > 0) {
+          charIndex--;
+        } else {
+          isDeleting = false;
+        }
+      }
+
+      setTimeout(typeLoop, isDeleting ? 50 : 100);
+    }
+
+    typeLoop();
+
+    setInterval(() => {
+      cursor.style.opacity = cursor.style.opacity === "0" ? "1" : "0";
+    }, 400);
+  </script>
 </body>
 
 </html>
