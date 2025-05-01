@@ -18,7 +18,10 @@
   <meta property="og:type" content="website" />
   <meta property="og:description" content="See my portfolio, blogs or my career" />
   <style>
-    html,
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       height: 100%;
       margin: 0;
@@ -141,7 +144,51 @@
       text-align: center;
     }
 
-    .work-desc {
+    section h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, #ba3057, #f5514e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .current-project {}
+
+    .project-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      margin: 3rem 0;
+      gap: 2rem;
+    }
+
+    .project-row img {
+      width: 100%;
+      max-width: 450px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-row .project-text {
+      max-width: 500px;
+      color: #4a2948;
+      text-align: left;
+    }
+
+    .project-row.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .final-project-text {
+      max-width: 700px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      font-size: 1.2rem;
+      color: #82194d;
+      text-align: center;
+    }
+
+    p {
       max-width: 600px;
       margin: 0 auto;
       font-size: 1.25rem;
@@ -171,7 +218,6 @@
       justify-content: center;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-
     }
 
     .box::before {
@@ -226,6 +272,19 @@
       -webkit-text-fill-color: transparent;
       transition: opacity 0.05s ease;
     }
+
+    @media (max-width: 768px) {
+
+      .project-row,
+      .project-row.reverse {
+        flex-direction: column !important;
+        text-align: center;
+      }
+
+      .project-text {
+        text-align: center;
+      }
+    }
   </style>
 </head>
 
@@ -260,7 +319,8 @@
         build worlds people can play and enjoy.
       </p>
       <div class="grid">
-        <a class="box" style="background-image: url('images/western.jpg');"><span>Western game</span></a>
+        <a href="#current-project" class="box" style="background-image: url('images/western.jpg');"><span>Western
+            game</span></a>
         <a href="https://f1shs0up.itch.io/suffering" class="box"
           style="background-image: url('images/suffering.jpg');"><span>Suffering</span></a>
         <a href="https://store.steampowered.com/app/2318780/CottageVille/" class="box"
@@ -274,6 +334,41 @@
           style="background-image: url('images/esc-ape.jpg');"><span>Esc-Ape</span></a>
       </div>
     </section>
+
+    <!-- New Current Project Section -->
+    <section id="current-project" class="current-project">
+      <h1>Current Project</h1>
+
+      <div class="project-row">
+        <img src="images/gameplay_showcase.gif" alt="Project Image 1">
+        <div class="project-text">
+          <h3>Story Driven, Open World and Action</h3>
+          <p>
+            This game will have exploration like no other. It will have a large open world with many different locations
+            to explore. It will have a deep story line that will take you on a journey through time and space.
+          </p>
+        </div>
+      </div>
+
+      <div class="project-row reverse">
+        <img src="images/gameplay_showcase2.gif" alt="Project Image 2">
+        <div class="project-text">
+          <h3>Variety</h3>
+          <p>
+            In this world you can do whatever you want. Whether that's hunting animals, shooting your enemies, gamble
+            your savings away or take part in missions or tasks. This game will support you completely.
+          </p>
+        </div>
+      </div>
+
+      <div class="final-project-text">
+        <p>
+          This game is still in active development. I'm experimenting with mechanics, iterating on feedback,
+          and aiming to release a playable demo soon. Stay tuned for updates!
+        </p>
+      </div>
+    </section>
+
   </main>
 
   <footer>
