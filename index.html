@@ -206,6 +206,7 @@
     }
 
     .game-slider-wrapper {
+      justify-content: center;
       overflow-x: auto;
       padding: 2rem 0;
       max-width: 600px;
@@ -495,6 +496,24 @@
       cursor.style.opacity = cursor.style.opacity === "0" ? "1" : "0";
     }, 400);
   </script>
+  <script>
+  // Horizontal scroll with mouse wheel for the game slider
+  const gameSlider = document.querySelector('.game-slider');
+
+  if (gameSlider) {
+    gameSlider.addEventListener('wheel', (event) => {
+      // Only vertical scroll gets redirected
+      if (event.deltaY !== 0) {
+        event.preventDefault();
+        gameSlider.scrollBy({
+          left: event.deltaY,
+          behavior: 'smooth'
+        });
+      }
+    }, { passive: false }); // passive: false is needed to call preventDefault
+  }
+</script>
+
 </body>
 
 </html>
