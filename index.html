@@ -206,22 +206,27 @@
     }
 
     .game-slider-wrapper {
-      justify-content: center;
-      overflow-x: auto;
-      padding: 0rem 0rem;
-    }
+  overflow-x: auto;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  box-sizing: border-box;
+}
 
 .game-slider {
   display: flex;
   flex-wrap: nowrap;
   gap: 2rem;
-  overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding: 1rem;
   max-width: 1000px;
   width: 100%;
   margin: 0 auto;
+  overflow-x: auto;
+  box-sizing: border-box;
 }
+
 
 .game-slider::-webkit-scrollbar {
   height: 8px;
