@@ -205,55 +205,81 @@
       gap: 2rem;
     }
 
-    .box {
-      text-decoration: none;
-      position: relative;
-      height: 200px;
-      width: 300px;
-      border-radius: 12px;
-      overflow: hidden;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+    .game-slider-wrapper {
+  overflow-x: auto;
+  padding: 2rem 0;
+}
 
-    .box::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #ba3057, #f5514e);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
+.game-slider {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 1rem;
+}
 
-    .box span {
-      position: relative;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      font-weight: bold;
-      margin-bottom: 1rem;
-      color: white;
-      z-index: 1;
-    }
+.game-slider::-webkit-scrollbar {
+  height: 8px;
+}
 
-    .box:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    }
+.game-slider::-webkit-scrollbar-thumb {
+  background: #ba3057;
+  border-radius: 4px;
+}
 
-    .box:hover::before {
-      opacity: 0.8;
-    }
+.box {
+  flex: 0 0 auto;
+  width: 280px;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  text-decoration: none;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
-    .box:hover span {
-      opacity: 1;
-      transform: translateY(0);
-    }
+.box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #ba3057, #f5514e);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.box:hover::before {
+  opacity: 0.8;
+}
+
+.box span {
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: white;
+  z-index: 1;
+}
+
+.box:hover span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
     footer {
       background: #ead2c478;
@@ -338,6 +364,17 @@
         <a href="https://danqzq.itch.io/esc-ape" class="box"
           style="background-image: url('images/esc-ape.jpg');"><span>Esc-Ape</span></a>
       </div>
+      <div class="game-slider-wrapper">
+        <div class="game-slider">
+          <a href="#current-project" class="box" style="background-image: url('images/western.jpg');"><span>Western Game</span></a>
+          <a href="https://f1shs0up.itch.io/suffering" class="box" style="background-image: url('images/suffering.jpg');"><span>Suffering</span></a>
+          <a href="https://store.steampowered.com/app/2318780/CottageVille/" class="box" style="background-image: url('images/cottage_ville.jpg');"><span>Cottage Ville</span></a>
+          <a href="https://f1shs0up.itch.io/fairtrade-ride" class="box" style="background-image: url('images/fair_trade_ride.jpg');"><span>Fair Trade Ride</span></a>
+          <a href="https://f1shs0up.itch.io/untitled-laser-sword-game" class="box" style="background-image: url('images/untitled_laser_sword_game.jpg');"><span>Laser Sword Game</span></a>
+          <a href="https://danqzq.itch.io/esc-ape" class="box" style="background-image: url('images/esc-ape.jpg');"><span>Esc-Ape</span></a>
+        </div>
+      </div>
+
     </section>
 
     <!-- New Current Project Section -->
