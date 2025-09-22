@@ -326,6 +326,41 @@
         margin-left: 0.3rem;
       }
     }
+
+    /* DARK THEME */
+body.dark-theme {
+  background: #4a2948;
+  color: #fadecd;
+}
+
+body.dark-theme .social-icons a,
+body.dark-theme .project-text,
+body.dark-theme footer {
+  color: #fadecd;
+}
+
+body.dark-theme p,
+body.dark-theme .final-project-text {
+  color: #fadecd;
+}
+
+body.dark-theme footer {
+  background: #2a1726;
+  border-top: 1px solid #fadecd66;
+}
+
+body.dark-theme .box span {
+  color: #fadecd;
+}
+
+body.dark-theme .buy-coffee-btn {
+  color: white;
+}
+
+body.dark-theme .project-text h3 {
+  color: #fadecd;
+}
+
   </style>
 </head>
 
@@ -343,6 +378,10 @@
       <a href="https://www.paypal.com/donate/?hosted_button_id=HMPDGGYSC8848" title="Paypal"><i
           class="fab fa-paypal"></i></a>
     </div>
+    <button id="theme-toggle" style="margin-left: 1rem; background: none; border: none; font-size: 1.2rem; cursor: pointer;" title="Toggle Dark Mode">
+  🌓
+</button>
+
   </div>
 
   <main>
@@ -359,21 +398,6 @@
         Game development is how I turn ideas into interactive experiences. Blending code, creativity, and design to
         build worlds people can play and enjoy.
       </p>
-      <div class="grid">
-        <a href="#current-project" class="box" style="background-image: url('images/western.jpg');"><span>Western
-            game</span></a>
-        <a href="https://f1shs0up.itch.io/suffering" class="box"
-          style="background-image: url('images/suffering.jpg');"><span>Suffering</span></a>
-        <a href="https://store.steampowered.com/app/2318780/CottageVille/" class="box"
-          style="background-image: url('images/cottage_ville.jpg');"><span>Cottage ville</span></a>
-        <a href="https://f1shs0up.itch.io/fairtrade-ride" class="box"
-          style="background-image: url('images/fair_trade_ride.jpg');"><span>Fair Trade Ride</span></a>
-        <a href="https://f1shs0up.itch.io/untitled-laser-sword-game" class="box"
-          style="background-image: url('images/untitled_laser_sword_game.jpg');"><span>Untitled Laser Sword
-            Game</span></a>
-        <a href="https://danqzq.itch.io/esc-ape" class="box"
-          style="background-image: url('images/esc-ape.jpg');"><span>Esc-Ape</span></a>
-      </div>
       <div class="game-slider-wrapper">
         <div class="game-slider">
           <a href="#current-project" class="box" style="background-image: url('images/western.jpg');"><span>Western Game</span></a>
@@ -504,6 +528,13 @@
       cursor.style.opacity = cursor.style.opacity === "0" ? "1" : "0";
     }, 400);
   </script>
+  <script>
+  const toggleBtn = document.getElementById('theme-toggle');
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+  });
+</script>
+
 
 </body>
 
