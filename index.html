@@ -29,6 +29,9 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #fadecd;
       color: #451e42;
+    }
+
+    body {
       display: flex;
       flex-direction: column;
     }
@@ -42,24 +45,15 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      flex-wrap: wrap;
     }
 
     .logo {
       font-weight: bold;
       font-size: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .social-icons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
     }
 
     .social-icons a {
+      margin-left: 1rem;
       text-decoration: none;
       color: #451e42;
       font-size: 1.2rem;
@@ -80,14 +74,6 @@
       background: linear-gradient(135deg, #ba3057, #f5514e);
       -webkit-background-clip: text;
       color: transparent;
-      display: inline-block;
-      min-width: 220px;
-      white-space: nowrap;
-    }
-
-    #typed-text,
-    #cursor {
-      white-space: nowrap;
     }
 
     a.buy-coffee-btn {
@@ -165,6 +151,8 @@
       -webkit-background-clip: text;
       color: transparent;
     }
+
+    .current-project {}
 
     .project-row {
       display: flex;
@@ -297,11 +285,6 @@
       .project-text {
         text-align: center;
       }
-
-      header h1 {
-        font-size: 2rem;
-        min-width: auto; /* allow smaller size on mobile */
-      }
     }
   </style>
 </head>
@@ -309,7 +292,7 @@
 <body>
   <div class="top-header">
     <div class="logo">
-      <img src="images/favicon.svg" alt="Logo" style="height: 27px;" />
+      <img src="images/favicon.svg" alt="Logo" style="height: 27px; margin-right: 0.5rem; vertical-align: middle;" />
       Adam Vlčko
     </div>
     <div class="social-icons">
@@ -317,7 +300,8 @@
       <a href="https://f1shs0up.itch.io/" title="Itch.io"><i class="fab fa-itch-io"></i></a>
       <a href="https://discord.gg/PJQUmFGyww" title="Join Discord"><i class="fab fa-discord"></i></a>
       <a href="https://github.com/F1shS0up" title="Github"><i class="fab fa-github"></i></a>
-      <a href="https://www.paypal.com/donate/?hosted_button_id=HMPDGGYSC8848" title="Paypal"><i class="fab fa-paypal"></i></a>
+      <a href="https://www.paypal.com/donate/?hosted_button_id=HMPDGGYSC8848" title="Paypal"><i
+          class="fab fa-paypal"></i></a>
     </div>
   </div>
 
@@ -352,6 +336,7 @@
       </div>
     </section>
 
+    <!-- New Current Project Section -->
     <section id="current-project" class="current-project">
       <h1>Current Project</h1>
 
@@ -384,6 +369,7 @@
         </p>
       </div>
     </section>
+
   </main>
 
   <footer>
@@ -468,4 +454,5 @@
     }, 400);
   </script>
 </body>
+
 </html>
