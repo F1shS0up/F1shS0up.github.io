@@ -207,88 +207,88 @@
     }
 
     .game-slider-wrapper {
-  overflow-x: auto;
-  padding: 2rem 0;
-  display: flex;
-  justify-content: center;
-  max-width: 100%;
-  box-sizing: border-box;
-}
+      overflow-x: auto;
+      padding: 2rem 0;
+      display: flex;
+      justify-content: center;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
 
-.game-slider {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 2rem;
-  scroll-snap-type: x mandatory;
-  padding: 1rem;
-  max-width: 1000px;
-  width: 100%;
-  margin: 0 auto;
-  overflow-x: auto;
-  box-sizing: border-box;
-}
+    .game-slider {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 2rem;
+      scroll-snap-type: x mandatory;
+      padding: 1rem;
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+      overflow-x: auto;
+      box-sizing: border-box;
+    }
 
 
-.game-slider::-webkit-scrollbar {
-  height: 8px;
-}
+    .game-slider::-webkit-scrollbar {
+      height: 8px;
+    }
 
-.game-slider::-webkit-scrollbar-thumb {
-  background: #ba3057;
-  border-radius: 4px;
-}
+    .game-slider::-webkit-scrollbar-thumb {
+      background: #ba3057;
+      border-radius: 4px;
+    }
 
-.box {
-  flex: 0 0 auto;
-  width: 280px;
-  height: 200px;
-  border-radius: 12px;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  text-decoration: none;
-  scroll-snap-align: start;
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+    .box {
+      flex: 0 0 auto;
+      width: 280px;
+      height: 200px;
+      border-radius: 12px;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      text-decoration: none;
+      scroll-snap-align: start;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
 
-.box::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #ba3057, #f5514e);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
+    .box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #ba3057, #f5514e);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
-.box:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-}
+    .box:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
 
-.box:hover::before {
-  opacity: 0.8;
-}
+    .box:hover::before {
+      opacity: 0.8;
+    }
 
-.box span {
-  position: relative;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: white;
-  z-index: 1;
-}
+    .box span {
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: white;
+      z-index: 1;
+    }
 
-.box:hover span {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .box:hover span {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
 
     footer {
@@ -322,50 +322,54 @@
         text-align: center;
       }
 
-      .social-icons a{
+      .social-icons a {
         margin-left: 0.3rem;
       }
+
+      .top-header {
+        padding: 1rem 1rem;
+      }
     }
+
     canvas {
-  display: block;
-  width: 100vw;
-  height: 100vh;
-}
+      display: block;
+      width: 100vw;
+      height: 100vh;
+    }
 
     /* DARK THEME */
-body.dark-theme {
-  background: #4a2948;
-  color: #fadecd;
-}
+    body.dark-theme {
+      background: #4a2948;
+      color: #fadecd;
+    }
 
-body.dark-theme .social-icons a,
-body.dark-theme .project-text,
-body.dark-theme footer {
-  color: #fadecd;
-}
+    body.dark-theme .social-icons a,
+    body.dark-theme .project-text,
+    body.dark-theme footer {
+      color: #fadecd;
+    }
 
-body.dark-theme p,
-body.dark-theme .final-project-text {
-  color: #fadecd;
-}
+    body.dark-theme p,
+    body.dark-theme .final-project-text {
+      color: #fadecd;
+    }
 
-body.dark-theme footer {
-  background: #2a1726;
-  border-top: 1px solid #fadecd66;
-}
+    body.dark-theme footer {
+      background: #2a1726;
+      border-top: 1px solid #fadecd66;
+    }
 
-body.dark-theme .box span {
-  color: #fadecd;
-}
+    body.dark-theme .box span {
+      color: #fadecd;
+    }
 
-body.dark-theme .buy-coffee-btn {
-  color: white;
-}
+    body.dark-theme .buy-coffee-btn {
+      color: white;
+    }
 
-body.dark-theme .project-text h3 {
-  color: #fadecd;
-}
-
+    body.dark-theme .project-text h3 {
+      color: #fadecd;
+    }
   </style>
 </head>
 
@@ -401,12 +405,18 @@ body.dark-theme .project-text h3 {
       </p>
       <div class="game-slider-wrapper">
         <div class="game-slider">
-          <a href="#current-project" class="box" style="background-image: url('images/western.jpg');"><span>Western Game</span></a>
-          <a href="https://f1shs0up.itch.io/suffering" class="box" style="background-image: url('images/suffering.jpg');"><span>Suffering</span></a>
-          <a href="https://store.steampowered.com/app/2318780/CottageVille/" class="box" style="background-image: url('images/cottage_ville.jpg');"><span>Cottage Ville</span></a>
-          <a href="https://f1shs0up.itch.io/fairtrade-ride" class="box" style="background-image: url('images/fair_trade_ride.jpg');"><span>Fair Trade Ride</span></a>
-          <a href="https://f1shs0up.itch.io/untitled-laser-sword-game" class="box" style="background-image: url('images/untitled_laser_sword_game.jpg');"><span>Laser Sword Game</span></a>
-          <a href="https://danqzq.itch.io/esc-ape" class="box" style="background-image: url('images/esc-ape.jpg');"><span>Esc-Ape</span></a>
+          <a href="#current-project" class="box" style="background-image: url('images/western.jpg');"><span>Western
+              Game</span></a>
+          <a href="https://f1shs0up.itch.io/suffering" class="box"
+            style="background-image: url('images/suffering.jpg');"><span>Suffering</span></a>
+          <a href="https://store.steampowered.com/app/2318780/CottageVille/" class="box"
+            style="background-image: url('images/cottage_ville.jpg');"><span>Cottage Ville</span></a>
+          <a href="https://f1shs0up.itch.io/fairtrade-ride" class="box"
+            style="background-image: url('images/fair_trade_ride.jpg');"><span>Fair Trade Ride</span></a>
+          <a href="https://f1shs0up.itch.io/untitled-laser-sword-game" class="box"
+            style="background-image: url('images/untitled_laser_sword_game.jpg');"><span>Laser Sword Game</span></a>
+          <a href="https://danqzq.itch.io/esc-ape" class="box"
+            style="background-image: url('images/esc-ape.jpg');"><span>Esc-Ape</span></a>
         </div>
       </div>
 
@@ -530,11 +540,11 @@ body.dark-theme .project-text h3 {
     }, 400);
   </script>
   <script>
-  const toggleBtn = document.getElementById('theme-toggle');
-  toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme');
-  });
-</script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+    });
+  </script>
 
 </body>
 
