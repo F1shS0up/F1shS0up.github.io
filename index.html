@@ -612,8 +612,8 @@
     const toggleBtn = document.getElementById('theme-toggle');
     const themeIcon = toggleBtn.querySelector('i');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const savedTheme = localStorage.getItem('theme');
-    let darkModeActive = savedTheme === 'dark' || (!savedTheme && prefersDark);
+    // const savedTheme = localStorage.getItem('theme');
+    let darkModeActive = /*savedTheme === 'dark' || (!savedTheme && */prefersDark;
 
     function applyTheme(isDark) {
       if (isDark) {
@@ -637,7 +637,7 @@
     toggleBtn.addEventListener('click', (e) => {
       e.preventDefault();
       darkModeActive = !darkModeActive;
-      localStorage.setItem('theme', darkModeActive ? 'dark' : 'light');
+      //localStorage.setItem('theme', darkModeActive ? 'dark' : 'light');
       applyTheme(darkModeActive);
     });
   </script>
