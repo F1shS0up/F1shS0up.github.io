@@ -19,6 +19,12 @@
   <meta property="og:type" content="website" />
   <meta property="og:description" content="See my portfolio, blogs or my career" />
   <style>
+    :root {
+      --primary-color: #f3de82;
+      --secondary-color: #10181c;
+      --third-color: #4F759B;
+    }
+
     html {
       scroll-behavior: smooth;
     }
@@ -27,8 +33,8 @@
       height: 100%;
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #fadecd;
-      color: #451e42;
+      background: var(--secondary-color);
+      color: var(--primary-color);
     }
 
     body {
@@ -55,13 +61,13 @@
     .social-icons a {
       margin-left: 1rem;
       text-decoration: none;
-      color: #451e42;
+      color: var(--primary-color);
       font-size: 1.2rem;
       transition: color 0.3s ease;
     }
 
     .social-icons a:hover {
-      color: #82194d;
+      color: var(--third-color);
     }
 
     header {
@@ -72,7 +78,7 @@
 
     header h1 {
       font-size: 2.5rem;
-      background: linear-gradient(135deg, #ba3057, #f5514e);
+      background: linear-gradient(135deg, var(--primary-color), var(--third-color));
       -webkit-background-clip: text;
       color: transparent;
     }
@@ -87,8 +93,8 @@
       text-transform: uppercase;
       text-decoration: none;
       border-radius: 12px;
-      background: linear-gradient(135deg, #ba3057, #f5514e);
-      color: white;
+      background: linear-gradient(135deg, var(--primary-color), var(--third-color));
+      color: var(--secondary-color);
       position: relative;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -148,7 +154,7 @@
 
     section h1 {
       font-size: 2.5rem;
-      background: linear-gradient(135deg, #ba3057, #f5514e);
+      background: linear-gradient(135deg, var(--primary-color), var(--third-color));
       -webkit-background-clip: text;
       color: transparent;
     }
@@ -173,7 +179,6 @@
 
     .project-row .project-text {
       max-width: 500px;
-      color: #4a2948;
       text-align: left;
     }
 
@@ -186,7 +191,6 @@
       margin: 0 auto;
       padding-top: 2rem;
       font-size: 1.2rem;
-      color: #82194d;
       text-align: center;
     }
 
@@ -194,7 +198,6 @@
       max-width: 600px;
       margin: 0 auto;
       font-size: 1.25rem;
-      color: #82194d;
     }
 
     .grid {
@@ -234,7 +237,7 @@
     }
 
     .game-slider::-webkit-scrollbar-thumb {
-      background: #ba3057;
+      background: var(--primary-color);
       border-radius: 4px;
     }
 
@@ -260,7 +263,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, #ba3057, #f5514e);
+      background: linear-gradient(135deg, var(--primary-color), var(--third-color));
       opacity: 0;
       transition: opacity 0.3s ease;
     }
@@ -281,7 +284,7 @@
       transition: opacity 0.3s ease, transform 0.3s ease;
       font-weight: bold;
       margin-bottom: 1rem;
-      color: white;
+      color: var(--secondary-color);
       z-index: 1;
     }
 
@@ -292,11 +295,10 @@
 
 
     footer {
-      background: #ead2c478;
+      background: var(--secondary-color);
       padding: 2rem;
       text-align: center;
       font-size: 1rem;
-      color: #4a2948;
       border-top: 1px solid #e1bfa8;
     }
 
@@ -304,7 +306,7 @@
       display: inline-block;
       font-weight: bold;
       margin-left: 2px;
-      background: linear-gradient(135deg, #ba3057, #f5514e);
+      background: linear-gradient(135deg, var(--primary-color), var(--third-color));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       transition: opacity 0.05s ease;
@@ -337,38 +339,24 @@
       height: 100vh;
     }
 
-    /* DARK THEME */
-    body.dark-theme {
-      background: #4a2948;
-      color: #fadecd;
+    /* 🌙 Simplified dark theme support — JS handles colors dynamically */
+    body {
+      background: var(--secondary-color);
+      color: var(--primary-color);
+      transition: background 0.4s ease, color 0.4s ease;
     }
 
-    body.dark-theme .social-icons a,
-    body.dark-theme .project-text,
-    body.dark-theme footer {
-      color: #fadecd;
+    .social-icons a#theme-toggle i {
+      transition: transform 0.3s ease, color 0.3s ease;
     }
 
-    body.dark-theme p,
-    body.dark-theme .final-project-text {
-      color: #fadecd;
+    .social-icons a#theme-toggle:hover i {
+      transform: rotate(20deg);
+      color: var(--third-color);
     }
 
-    body.dark-theme footer {
-      background: #2a1726;
-      border-top: 1px solid #fadecd66;
-    }
-
-    body.dark-theme .box span {
-      color: #fadecd;
-    }
-
-    body.dark-theme .buy-coffee-btn {
-      color: white;
-    }
-
-    body.dark-theme .project-text h3 {
-      color: #fadecd;
+    footer {
+      border-top: 1px solid var(--third-color);
     }
   </style>
 </head>
@@ -376,7 +364,7 @@
 <body>
   <div class="top-header">
     <div class="logo">
-      <img src="images/favicon.svg" alt="Logo" style="height: 27px; margin-right: 0.5rem; vertical-align: middle;" />
+      <!-- <img src="images/favicon.svg" alt="Logo" style="height: 27px; margin-right: 0.5rem; vertical-align: middle;" /> -->
       Adam Vlčko
     </div>
     <div class="social-icons">
@@ -386,6 +374,7 @@
       <a href="https://github.com/F1shS0up" title="Github"><i class="fab fa-github"></i></a>
       <a href="https://www.paypal.com/donate/?hosted_button_id=HMPDGGYSC8848" title="Paypal"><i
           class="fab fa-paypal"></i></a>
+      <a href="#" id="theme-toggle" title="Toggle Theme"><i class="fas fa-moon"></i></a>
     </div>
   </div>
 
@@ -540,9 +529,114 @@
     }, 400);
   </script>
   <script>
+    // 🎨 --- RANDOM COLOR PALETTE LOGIC ---
+    const colorPalettes = [
+      // 1. Cyberpunk Night
+      ["#E0FBFC", "#0B132B", "#1C7293"],
+
+      // 2. Deep Space
+      ["#F5F5F5", "#0D0221", "#FF47DA"],
+
+      // 3. Forest Shadows
+      ["#DCECC9", "#1E2F1E", "#6B705C"],
+
+      // 4. Minimal Tech
+      ["#EAEAEA", "#1C1C1C", "#4C5FD5"],
+
+      // 5. Neon Future
+      ["#F0F0F0", "#121212", "#4F5D75"],
+
+      // 6. Luxury Dark
+      ["#ECECEC", "#1C1C1C", "#BB86FC"],
+
+      // 7. Sunset Horizon
+      ["#F8F0F8", "#2D132C", "#FF865E"],
+
+      // 8. Ocean Depths
+      ["#E1F5FE", "#082032", "#00A8CC"],
+
+      // 9. Earth Adventure
+      ["#F3E5AB", "#3E2723", "#D7A86E"],
+
+      // 10. Creative Edge
+      ["#F5F7FA", "#141414", "#FF4D6D"],
+
+      // 11. Professional Blue
+      ["#E3E9F1", "#1E3A8A", "#3B82F6"],
+
+      // 12. Muted Earth
+      ["#EDEDED", "#222222", "#B4975A"],
+
+      // 13. Magenta Glow
+      ["#FFD6F6", "#1B0014", "#FF00AA"],
+
+      // 14. Arctic Chill
+      ["#E1F5FE", "#0A1F44", "#4DD0E1"],
+
+      // 15. Volcanic Ember
+      ["#FFEDE1", "#3B0000", "#FF4500"],
+
+      // 16. Metallic Tech
+      ["#E8E8E8", "#1D1F21", "#7FFFD4"],
+
+      // 17. Twilight Violet
+      ["#F6E6FF", "#1B0030", "#9B59B6"],
+
+      // 18. Electric Storm
+      ["#EAEAEA", "#0F0F1C", "#FFAA00"],
+
+      // 19. Dark Jungle
+      ["#DCECC9", "#142A1D", "#A6D608"],
+
+      // 20. Crimson Night
+      ["#F8E1E1", "#2C0000", "#FF4C4C"],
+    ];
+
+
+
+    const [primary, secondary, third] = colorPalettes[Math.floor(Math.random() * colorPalettes.length)];
+
+    // Store palette in CSS variables (for light mode)
+    document.documentElement.style.setProperty('--primary-light', primary);
+    document.documentElement.style.setProperty('--secondary-light', secondary);
+    document.documentElement.style.setProperty('--third-light', third);
+
+    // Define dark version (swap primary/secondary)
+    document.documentElement.style.setProperty('--primary-dark', secondary);
+    document.documentElement.style.setProperty('--secondary-dark', primary);
+    document.documentElement.style.setProperty('--third-dark', third);
+
+    // 🌙 --- THEME LOGIC ---
     const toggleBtn = document.getElementById('theme-toggle');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-theme');
+    const themeIcon = toggleBtn.querySelector('i');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+    let darkModeActive = savedTheme === 'dark' || (!savedTheme && prefersDark);
+
+    function applyTheme(isDark) {
+      if (isDark) {
+        document.body.classList.add('dark-theme');
+        document.documentElement.style.setProperty('--primary-color', getComputedStyle(document.documentElement).getPropertyValue('--primary-dark'));
+        document.documentElement.style.setProperty('--secondary-color', getComputedStyle(document.documentElement).getPropertyValue('--secondary-dark'));
+        document.documentElement.style.setProperty('--third-color', getComputedStyle(document.documentElement).getPropertyValue('--third-dark'));
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        document.body.classList.remove('dark-theme');
+        document.documentElement.style.setProperty('--primary-color', getComputedStyle(document.documentElement).getPropertyValue('--primary-light'));
+        document.documentElement.style.setProperty('--secondary-color', getComputedStyle(document.documentElement).getPropertyValue('--secondary-light'));
+        document.documentElement.style.setProperty('--third-color', getComputedStyle(document.documentElement).getPropertyValue('--third-light'));
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+      }
+    }
+
+    // Initial load
+    applyTheme(darkModeActive);
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      darkModeActive = !darkModeActive;
+      localStorage.setItem('theme', darkModeActive ? 'dark' : 'light');
+      applyTheme(darkModeActive);
     });
   </script>
 
