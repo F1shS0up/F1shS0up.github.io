@@ -333,11 +333,19 @@
       }
     }
 
-    canvas {
-      display: block;
-      width: 100vw;
-      height: 100vh;
-    }
+    canvas#background-canvas {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -9999; /* keep it behind absolutely everything */
+  pointer-events: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+  filter: blur(1px) brightness(1.1);
+}
 
     /* 🌙 Simplified dark theme support — JS handles colors dynamically */
     body {
@@ -362,6 +370,7 @@
 </head>
 
 <body>
+  <canvas id="background-canvas"></canvas>
   <div class="top-header">
     <div class="logo">
       <!-- <img src="images/favicon.svg" alt="Logo" style="height: 27px; margin-right: 0.5rem; vertical-align: middle;" /> -->
@@ -612,8 +621,8 @@
     const toggleBtn = document.getElementById('theme-toggle');
     const themeIcon = toggleBtn.querySelector('i');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    // const savedTheme = localStorage.getItem('theme');
-    let darkModeActive = /*savedTheme === 'dark' || (!savedTheme && */prefersDark;
+    const savedTheme = localStorage.getItem('theme');
+    let darkModeActive = savedTheme === 'dark' || (!savedTheme && prefersDark);
 
     function applyTheme(isDark) {
       if (isDark) {
@@ -637,9 +646,113 @@
     toggleBtn.addEventListener('click', (e) => {
       e.preventDefault();
       darkModeActive = !darkModeActive;
-      //localStorage.setItem('theme', darkModeActive ? 'dark' : 'light');
+      localStorage.setItem('theme', darkModeActive ? 'dark' : 'light');
       applyTheme(darkModeActive);
     });
+  </script>
+  <script>
+    // 🌬️ Theme-colored floating particles with scroll wind and responsive behavior
+const canvas = document.getElementById('background-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let baseDensity = 0.00007;
+let numParticles;
+let scrollVelocity = 0;
+let lastScrollY = window.scrollY;
+let lastTime = performance.now();
+
+function setCanvasSize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  numParticles = Math.floor(window.innerWidth * window.innerHeight * baseDensity);
+}
+
+function createParticles() {
+  particles = [];
+  for (let i = 0; i < numParticles; i++) particles.push(new Particle());
+}
+
+class Particle {
+  constructor() {
+    this.reset();
+  }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 1;
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.speedY = (Math.random() - 0.5) * 0.3;
+    this.opacity = Math.random() * 0.6 + 0.2;
+  }
+  update(wind) {
+    this.x += this.speedX + wind.x;
+    this.y += this.speedY + wind.y;
+
+    // wrap around edges
+    if (this.x < -10) this.x = canvas.width + 10;
+    if (this.x > canvas.width + 10) this.x = -10;
+    if (this.y < -10) this.y = canvas.height + 10;
+    if (this.y > canvas.height + 10) this.y = -10;
+  }
+  draw() {
+    const color = getComputedStyle(document.documentElement)
+      .getPropertyValue('--third-color')
+      .trim() || '#ffffff';
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = hexToRGBA(color, this.opacity);
+    ctx.fill();
+  }
+}
+
+function hexToRGBA(hex, alpha = 1) {
+  let c = hex.replace('#', '');
+  if (c.length === 3) c = c.split('').map(x => x + x).join('');
+  const [r, g, b] = c.match(/.{2}/g).map(x => parseInt(x, 16));
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+// Scroll velocity detection
+window.addEventListener('scroll', () => {
+  const currentY = window.scrollY;
+  const delta = currentY - lastScrollY;
+  scrollVelocity += delta * 0.4; // adds momentum
+  lastScrollY = currentY;
+});
+
+// Resize handling (debounced)
+let resizeTimeout;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    setCanvasSize();
+    createParticles();
+  }, 150);
+});
+
+function animateParticles(timestamp) {
+  const dt = (timestamp - lastTime) / 16.7;
+  lastTime = timestamp;
+
+  scrollVelocity *= Math.pow(0.94, dt); // smooth drag
+
+  const wind = {
+    x: Math.sin(timestamp * 0.0002) * 0.15,
+    y: -scrollVelocity * 0.05,
+  };
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (const p of particles) {
+    p.update(wind);
+    p.draw();
+  }
+  requestAnimationFrame(animateParticles);
+}
+
+// Initialize
+setCanvasSize();
+createParticles();
+animateParticles(performance.now());
   </script>
 
 </body>
